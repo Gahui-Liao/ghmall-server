@@ -1,0 +1,16 @@
+server:
+    port: 8118
+    servlet:
+        context-path: /ghmall
+
+# 数据库连接配置
+spring:
+    datasource:
+        url: jdbc:mysql://127.0.0.1:3306?useUnicode=true&characterEncoding=utf8&useSSL=false
+        username: root
+        password: liaojiaxi
+        driver-class-name: com.mysql.jdbc.Driver
+
+
+jwt:
+    timeout: 30*60*60

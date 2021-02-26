@@ -1,0 +1,118 @@
+2021-02-03 === [main] === INFO  === com.gahui.ghmall.server.GhmallServerApplication ==== Starting GhmallServerApplication using Java 1.8.0_211 on LAPTOP-7T3VQL9G with PID 12184 (E:\ghmall_workspace\ghmall-server\target\classes started by Gahui_Liao in E:\ghmall_workspace\ghmall-server)
+2021-02-03 === [main] === INFO  === com.gahui.ghmall.server.GhmallServerApplication ==== The following profiles are active: dev
+2021-02-03 === [main] === INFO  === o.s.boot.web.embedded.tomcat.TomcatWebServer ==== Tomcat initialized with port(s): 8118 (http)
+2021-02-03 === [main] === INFO  === org.apache.coyote.http11.Http11NioProtocol ==== Initializing ProtocolHandler ["http-nio-8118"]
+2021-02-03 === [main] === INFO  === org.apache.catalina.core.StandardService ==== Starting service [Tomcat]
+2021-02-03 === [main] === INFO  === org.apache.catalina.core.StandardEngine ==== Starting Servlet engine: [Apache Tomcat/9.0.41]
+2021-02-03 === [main] === INFO  === o.a.c.c.C.[Tomcat].[localhost].[/ghmall] ==== Initializing Spring embedded WebApplicationContext
+2021-02-03 === [main] === INFO  === o.s.b.w.s.c.ServletWebServerApplicationContext ==== Root WebApplicationContext: initialization completed in 2248 ms
+2021-02-03 === [main] === INFO  === o.s.scheduling.concurrent.ThreadPoolTaskExecutor ==== Initializing ExecutorService 'applicationTaskExecutor'
+2021-02-03 === [main] === INFO  === org.apache.coyote.http11.Http11NioProtocol ==== Starting ProtocolHandler ["http-nio-8118"]
+2021-02-03 === [main] === INFO  === o.s.boot.web.embedded.tomcat.TomcatWebServer ==== Tomcat started on port(s): 8118 (http) with context path '/ghmall'
+2021-02-03 === [main] === INFO  === com.gahui.ghmall.server.GhmallServerApplication ==== Started GhmallServerApplication in 4.442 seconds (JVM running for 8.537)
+2021-02-03 === [main] === INFO  === com.gahui.ghmall.server.GhmallServerApplication ==== Starting GhmallServerApplication using Java 1.8.0_211 on LAPTOP-7T3VQL9G with PID 21436 (E:\ghmall_workspace\ghmall-server\target\classes started by Gahui_Liao in E:\ghmall_workspace\ghmall-server)
+2021-02-03 === [main] === INFO  === com.gahui.ghmall.server.GhmallServerApplication ==== The following profiles are active: dev
+2021-02-03 === [main] === INFO  === o.s.boot.web.embedded.tomcat.TomcatWebServer ==== Tomcat initialized with port(s): 8118 (http)
+2021-02-03 === [main] === INFO  === org.apache.coyote.http11.Http11NioProtocol ==== Initializing ProtocolHandler ["http-nio-8118"]
+2021-02-03 === [main] === INFO  === org.apache.catalina.core.StandardService ==== Starting service [Tomcat]
+2021-02-03 === [main] === INFO  === org.apache.catalina.core.StandardEngine ==== Starting Servlet engine: [Apache Tomcat/9.0.41]
+2021-02-03 === [main] === INFO  === o.a.c.c.C.[Tomcat].[localhost].[/ghmall] ==== Initializing Spring embedded WebApplicationContext
+2021-02-03 === [main] === INFO  === o.s.b.w.s.c.ServletWebServerApplicationContext ==== Root WebApplicationContext: initialization completed in 4481 ms
+2021-02-03 === [main] === INFO  === o.s.scheduling.concurrent.ThreadPoolTaskExecutor ==== Initializing ExecutorService 'applicationTaskExecutor'
+2021-02-03 === [main] === INFO  === org.apache.coyote.http11.Http11NioProtocol ==== Starting ProtocolHandler ["http-nio-8118"]
+2021-02-03 === [main] === INFO  === o.s.boot.web.embedded.tomcat.TomcatWebServer ==== Tomcat started on port(s): 8118 (http) with context path '/ghmall'
+2021-02-03 === [main] === INFO  === com.gahui.ghmall.server.GhmallServerApplication ==== Started GhmallServerApplication in 10.375 seconds (JVM running for 27.704)
+2021-02-03 === [SpringContextShutdownHook] === INFO  === o.s.scheduling.concurrent.ThreadPoolTaskExecutor ==== Shutting down ExecutorService 'applicationTaskExecutor'
+2021-02-03 === [main] === INFO  === com.gahui.ghmall.server.GhmallServerApplication ==== Starting GhmallServerApplication using Java 1.8.0_211 on LAPTOP-7T3VQL9G with PID 17520 (E:\ghmall_workspace\ghmall-server\target\classes started by Gahui_Liao in E:\ghmall_workspace\ghmall-server)
+2021-02-03 === [main] === INFO  === com.gahui.ghmall.server.GhmallServerApplication ==== The following profiles are active: dev
+2021-02-03 === [main] === INFO  === o.s.boot.web.embedded.tomcat.TomcatWebServer ==== Tomcat initialized with port(s): 8118 (http)
+2021-02-03 === [main] === INFO  === org.apache.coyote.http11.Http11NioProtocol ==== Initializing ProtocolHandler ["http-nio-8118"]
+2021-02-03 === [main] === INFO  === org.apache.catalina.core.StandardService ==== Starting service [Tomcat]
+2021-02-03 === [main] === INFO  === org.apache.catalina.core.StandardEngine ==== Starting Servlet engine: [Apache Tomcat/9.0.41]
+2021-02-03 === [main] === INFO  === o.a.c.c.C.[Tomcat].[localhost].[/ghmall] ==== Initializing Spring embedded WebApplicationContext
+2021-02-03 === [main] === INFO  === o.s.b.w.s.c.ServletWebServerApplicationContext ==== Root WebApplicationContext: initialization completed in 2628 ms
+2021-02-03 === [main] === INFO  === o.s.scheduling.concurrent.ThreadPoolTaskExecutor ==== Initializing ExecutorService 'applicationTaskExecutor'
+2021-02-03 === [main] === INFO  === org.apache.coyote.http11.Http11NioProtocol ==== Starting ProtocolHandler ["http-nio-8118"]
+2021-02-03 === [main] === INFO  === o.s.boot.web.embedded.tomcat.TomcatWebServer ==== Tomcat started on port(s): 8118 (http) with context path '/ghmall'
+2021-02-03 === [main] === INFO  === com.gahui.ghmall.server.GhmallServerApplication ==== Started GhmallServerApplication in 5.116 seconds (JVM running for 9.032)
+2021-02-03 === [main] === INFO  === com.gahui.ghmall.server.GhmallServerApplication ==== Starting GhmallServerApplication using Java 1.8.0_211 on LAPTOP-7T3VQL9G with PID 14928 (E:\ghmall_workspace\ghmall-server\target\classes started by Gahui_Liao in E:\ghmall_workspace\ghmall-server)
+2021-02-03 === [main] === INFO  === com.gahui.ghmall.server.GhmallServerApplication ==== The following profiles are active: dev
+2021-02-03 === [main] === INFO  === o.s.boot.web.embedded.tomcat.TomcatWebServer ==== Tomcat initialized with port(s): 8118 (http)
+2021-02-03 === [main] === INFO  === org.apache.coyote.http11.Http11NioProtocol ==== Initializing ProtocolHandler ["http-nio-8118"]
+2021-02-03 === [main] === INFO  === org.apache.catalina.core.StandardService ==== Starting service [Tomcat]
+2021-02-03 === [main] === INFO  === org.apache.catalina.core.StandardEngine ==== Starting Servlet engine: [Apache Tomcat/9.0.41]
+2021-02-03 === [main] === INFO  === o.a.c.c.C.[Tomcat].[localhost].[/ghmall] ==== Initializing Spring embedded WebApplicationContext
+2021-02-03 === [main] === INFO  === o.s.b.w.s.c.ServletWebServerApplicationContext ==== Root WebApplicationContext: initialization completed in 3229 ms
+2021-02-03 === [main] === INFO  === o.s.scheduling.concurrent.ThreadPoolTaskExecutor ==== Initializing ExecutorService 'applicationTaskExecutor'
+2021-02-03 === [main] === INFO  === org.apache.coyote.http11.Http11NioProtocol ==== Starting ProtocolHandler ["http-nio-8118"]
+2021-02-03 === [main] === INFO  === o.s.boot.web.embedded.tomcat.TomcatWebServer ==== Tomcat started on port(s): 8118 (http) with context path '/ghmall'
+2021-02-03 === [main] === INFO  === com.gahui.ghmall.server.GhmallServerApplication ==== Started GhmallServerApplication in 6.819 seconds (JVM running for 19.337)
+2021-02-03 === [SpringContextShutdownHook] === INFO  === o.s.scheduling.concurrent.ThreadPoolTaskExecutor ==== Shutting down ExecutorService 'applicationTaskExecutor'
+2021-02-03 === [main] === INFO  === com.gahui.ghmall.server.GhmallServerApplication ==== Starting GhmallServerApplication using Java 1.8.0_211 on LAPTOP-7T3VQL9G with PID 1384 (E:\ghmall_workspace\ghmall-server\target\classes started by Gahui_Liao in E:\ghmall_workspace\ghmall-server)
+2021-02-03 === [main] === INFO  === com.gahui.ghmall.server.GhmallServerApplication ==== The following profiles are active: dev
+2021-02-03 === [main] === INFO  === o.s.boot.web.embedded.tomcat.TomcatWebServer ==== Tomcat initialized with port(s): 8118 (http)
+2021-02-03 === [main] === INFO  === org.apache.coyote.http11.Http11NioProtocol ==== Initializing ProtocolHandler ["http-nio-8118"]
+2021-02-03 === [main] === INFO  === org.apache.catalina.core.StandardService ==== Starting service [Tomcat]
+2021-02-03 === [main] === INFO  === org.apache.catalina.core.StandardEngine ==== Starting Servlet engine: [Apache Tomcat/9.0.41]
+2021-02-03 === [main] === INFO  === o.a.c.c.C.[Tomcat].[localhost].[/ghmall] ==== Initializing Spring embedded WebApplicationContext
+2021-02-03 === [main] === INFO  === o.s.b.w.s.c.ServletWebServerApplicationContext ==== Root WebApplicationContext: initialization completed in 3559 ms
+2021-02-03 === [main] === INFO  === o.s.scheduling.concurrent.ThreadPoolTaskExecutor ==== Initializing ExecutorService 'applicationTaskExecutor'
+2021-02-03 === [main] === INFO  === org.apache.coyote.http11.Http11NioProtocol ==== Starting ProtocolHandler ["http-nio-8118"]
+2021-02-03 === [main] === INFO  === o.s.boot.web.embedded.tomcat.TomcatWebServer ==== Tomcat started on port(s): 8118 (http) with context path '/ghmall'
+2021-02-03 === [main] === INFO  === com.gahui.ghmall.server.GhmallServerApplication ==== Started GhmallServerApplication in 7.277 seconds (JVM running for 11.589)
+2021-02-03 === [SpringContextShutdownHook] === INFO  === o.s.scheduling.concurrent.ThreadPoolTaskExecutor ==== Shutting down ExecutorService 'applicationTaskExecutor'
+2021-02-03 === [main] === INFO  === com.gahui.ghmall.server.GhmallServerApplication ==== Starting GhmallServerApplication using Java 1.8.0_211 on LAPTOP-7T3VQL9G with PID 10324 (E:\ghmall_workspace\ghmall-server\target\classes started by Gahui_Liao in E:\ghmall_workspace\ghmall-server)
+2021-02-03 === [main] === INFO  === com.gahui.ghmall.server.GhmallServerApplication ==== The following profiles are active: dev
+2021-02-03 === [main] === INFO  === o.s.boot.web.embedded.tomcat.TomcatWebServer ==== Tomcat initialized with port(s): 8118 (http)
+2021-02-03 === [main] === INFO  === org.apache.coyote.http11.Http11NioProtocol ==== Initializing ProtocolHandler ["http-nio-8118"]
+2021-02-03 === [main] === INFO  === org.apache.catalina.core.StandardService ==== Starting service [Tomcat]
+2021-02-03 === [main] === INFO  === org.apache.catalina.core.StandardEngine ==== Starting Servlet engine: [Apache Tomcat/9.0.41]
+2021-02-03 === [main] === INFO  === o.a.c.c.C.[Tomcat].[localhost].[/ghmall] ==== Initializing Spring embedded WebApplicationContext
+2021-02-03 === [main] === INFO  === o.s.b.w.s.c.ServletWebServerApplicationContext ==== Root WebApplicationContext: initialization completed in 2229 ms
+2021-02-03 === [main] === INFO  === o.s.scheduling.concurrent.ThreadPoolTaskExecutor ==== Initializing ExecutorService 'applicationTaskExecutor'
+2021-02-03 === [main] === INFO  === org.apache.coyote.http11.Http11NioProtocol ==== Starting ProtocolHandler ["http-nio-8118"]
+2021-02-03 === [main] === INFO  === o.s.boot.web.embedded.tomcat.TomcatWebServer ==== Tomcat started on port(s): 8118 (http) with context path '/ghmall'
+2021-02-03 === [main] === INFO  === com.gahui.ghmall.server.GhmallServerApplication ==== Started GhmallServerApplication in 5.053 seconds (JVM running for 8.73)
+2021-02-03 === [SpringContextShutdownHook] === INFO  === o.s.scheduling.concurrent.ThreadPoolTaskExecutor ==== Shutting down ExecutorService 'applicationTaskExecutor'
+2021-02-03 === [main] === INFO  === com.gahui.ghmall.server.GhmallServerApplication ==== Starting GhmallServerApplication using Java 1.8.0_211 on LAPTOP-7T3VQL9G with PID 2000 (E:\ghmall_workspace\ghmall-server\target\classes started by Gahui_Liao in E:\ghmall_workspace\ghmall-server)
+2021-02-03 === [main] === INFO  === com.gahui.ghmall.server.GhmallServerApplication ==== The following profiles are active: dev
+2021-02-03 === [main] === INFO  === o.s.boot.web.embedded.tomcat.TomcatWebServer ==== Tomcat initialized with port(s): 8118 (http)
+2021-02-03 === [main] === INFO  === org.apache.coyote.http11.Http11NioProtocol ==== Initializing ProtocolHandler ["http-nio-8118"]
+2021-02-03 === [main] === INFO  === org.apache.catalina.core.StandardService ==== Starting service [Tomcat]
+2021-02-03 === [main] === INFO  === org.apache.catalina.core.StandardEngine ==== Starting Servlet engine: [Apache Tomcat/9.0.41]
+2021-02-03 === [main] === INFO  === o.a.c.c.C.[Tomcat].[localhost].[/ghmall] ==== Initializing Spring embedded WebApplicationContext
+2021-02-03 === [main] === INFO  === o.s.b.w.s.c.ServletWebServerApplicationContext ==== Root WebApplicationContext: initialization completed in 2982 ms
+2021-02-03 === [main] === INFO  === o.s.scheduling.concurrent.ThreadPoolTaskExecutor ==== Initializing ExecutorService 'applicationTaskExecutor'
+2021-02-03 === [main] === INFO  === org.apache.coyote.http11.Http11NioProtocol ==== Starting ProtocolHandler ["http-nio-8118"]
+2021-02-03 === [main] === INFO  === o.s.boot.web.embedded.tomcat.TomcatWebServer ==== Tomcat started on port(s): 8118 (http) with context path '/ghmall'
+2021-02-03 === [main] === INFO  === com.gahui.ghmall.server.GhmallServerApplication ==== Started GhmallServerApplication in 6.679 seconds (JVM running for 16.259)
+2021-02-03 === [http-nio-8118-exec-1] === INFO  === o.a.c.c.C.[Tomcat].[localhost].[/ghmall] ==== Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-02-03 === [http-nio-8118-exec-1] === INFO  === org.springframework.web.servlet.DispatcherServlet ==== Initializing Servlet 'dispatcherServlet'
+2021-02-03 === [http-nio-8118-exec-1] === INFO  === org.springframework.web.servlet.DispatcherServlet ==== Completed initialization in 2 ms
+2021-02-03 === [http-nio-8118-exec-5] === INFO  === com.gahui.ghmall.server.aop.PvAop ==== remote request addr ===>127.0.0.1
+2021-02-03 === [main] === INFO  === com.gahui.ghmall.server.cache.BaseEhCacheServiceTest ==== Starting EhCacheServiceTest using Java 1.8.0_211 on LAPTOP-7T3VQL9G with PID 14592 (started by Gahui_Liao in E:\ghmall_workspace\ghmall-server)
+2021-02-03 === [main] === INFO  === com.gahui.ghmall.server.cache.BaseEhCacheServiceTest ==== The following profiles are active: dev
+2021-02-03 === [main] === INFO  === o.s.scheduling.concurrent.ThreadPoolTaskExecutor ==== Initializing ExecutorService 'applicationTaskExecutor'
+2021-02-03 === [main] === INFO  === com.gahui.ghmall.server.cache.BaseEhCacheServiceTest ==== Started EhCacheServiceTest in 5.606 seconds (JVM running for 8.727)
+2021-02-03 === [SpringContextShutdownHook] === INFO  === o.s.scheduling.concurrent.ThreadPoolTaskExecutor ==== Shutting down ExecutorService 'applicationTaskExecutor'
+2021-02-03 === [SpringContextShutdownHook] === INFO  === o.s.scheduling.concurrent.ThreadPoolTaskExecutor ==== Shutting down ExecutorService 'applicationTaskExecutor'
+2021-02-03 === [main] === INFO  === com.gahui.ghmall.server.cache.BaseEhCacheServiceTest ==== Starting EhCacheServiceTest using Java 1.8.0_211 on LAPTOP-7T3VQL9G with PID 11872 (started by Gahui_Liao in E:\ghmall_workspace\ghmall-server)
+2021-02-03 === [main] === INFO  === com.gahui.ghmall.server.cache.BaseEhCacheServiceTest ==== The following profiles are active: dev
+2021-02-03 === [main] === INFO  === o.s.scheduling.concurrent.ThreadPoolTaskExecutor ==== Initializing ExecutorService 'applicationTaskExecutor'
+2021-02-03 === [main] === INFO  === com.gahui.ghmall.server.cache.BaseEhCacheServiceTest ==== Started EhCacheServiceTest in 5.105 seconds (JVM running for 6.581)
+2021-02-03 === [SpringContextShutdownHook] === INFO  === o.s.scheduling.concurrent.ThreadPoolTaskExecutor ==== Shutting down ExecutorService 'applicationTaskExecutor'
+2021-02-03 === [main] === INFO  === com.gahui.ghmall.server.cache.BaseEhCacheServiceTest ==== Starting EhCacheServiceTest using Java 1.8.0_211 on LAPTOP-7T3VQL9G with PID 10876 (started by Gahui_Liao in E:\ghmall_workspace\ghmall-server)
+2021-02-03 === [main] === INFO  === com.gahui.ghmall.server.cache.BaseEhCacheServiceTest ==== The following profiles are active: dev
+2021-02-03 === [main] === INFO  === o.s.scheduling.concurrent.ThreadPoolTaskExecutor ==== Initializing ExecutorService 'applicationTaskExecutor'
+2021-02-03 === [main] === INFO  === com.gahui.ghmall.server.cache.BaseEhCacheServiceTest ==== Started EhCacheServiceTest in 5.014 seconds (JVM running for 6.332)
+2021-02-03 === [SpringContextShutdownHook] === INFO  === o.s.scheduling.concurrent.ThreadPoolTaskExecutor ==== Shutting down ExecutorService 'applicationTaskExecutor'
+2021-02-03 === [main] === INFO  === com.gahui.ghmall.server.cache.BaseEhCacheServiceTest ==== Starting EhCacheServiceTest using Java 1.8.0_211 on LAPTOP-7T3VQL9G with PID 14924 (started by Gahui_Liao in E:\ghmall_workspace\ghmall-server)
+2021-02-03 === [main] === INFO  === com.gahui.ghmall.server.cache.BaseEhCacheServiceTest ==== The following profiles are active: dev
+2021-02-03 === [main] === INFO  === o.s.scheduling.concurrent.ThreadPoolTaskExecutor ==== Initializing ExecutorService 'applicationTaskExecutor'
+2021-02-03 === [main] === INFO  === com.gahui.ghmall.server.cache.BaseEhCacheServiceTest ==== Started EhCacheServiceTest in 5.143 seconds (JVM running for 6.596)
+2021-02-03 === [SpringContextShutdownHook] === INFO  === o.s.scheduling.concurrent.ThreadPoolTaskExecutor ==== Shutting down ExecutorService 'applicationTaskExecutor'
+2021-02-03 === [main] === INFO  === com.gahui.ghmall.server.cache.BaseEhCacheServiceTest ==== Starting EhCacheServiceTest using Java 1.8.0_211 on LAPTOP-7T3VQL9G with PID 19416 (started by Gahui_Liao in E:\ghmall_workspace\ghmall-server)
+2021-02-03 === [main] === INFO  === com.gahui.ghmall.server.cache.BaseEhCacheServiceTest ==== The following profiles are active: dev
+2021-02-03 === [main] === INFO  === o.s.scheduling.concurrent.ThreadPoolTaskExecutor ==== Initializing ExecutorService 'applicationTaskExecutor'
+2021-02-03 === [main] === INFO  === com.gahui.ghmall.server.cache.BaseEhCacheServiceTest ==== Started EhCacheServiceTest in 5.023 seconds (JVM running for 6.307)
+2021-02-03 === [SpringContextShutdownHook] === INFO  === o.s.scheduling.concurrent.ThreadPoolTaskExecutor ==== Shutting down ExecutorService 'applicationTaskExecutor'
