@@ -51,7 +51,7 @@ public class GhmallException extends RuntimeException {
 
     @Override
     public String getMessage() {
-        return ExceptionEnum.getDescByCode(this.excCode) + " - " + this.getExcMsg();
+        return this.getExcCode() + " - " + this.getExcMsg();
 
     }
 }

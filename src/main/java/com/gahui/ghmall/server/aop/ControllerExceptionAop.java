@@ -1,5 +1,6 @@
 package com.gahui.ghmall.server.aop;
 
+import com.gahui.ghmall.server.constant.ExceptionEnum;
 import com.gahui.ghmall.server.exception.GhmallException;
 import com.gahui.ghmall.server.vo.ResponseVo;
 import lombok.extern.slf4j.Slf4j;
@@ -43,9 +44,9 @@ public class ControllerExceptionAop {
         log.info("controller访问异常，类名为===>{}，方法名为===>{}",
                 methodSignature.getDeclaringTypeName(),
                 methodSignature.getMethod().getName());
-        if (throwable instanceof GhmallException) {
+        if(throwable instanceof GhmallException){
             return ResponseVo.fail(throwable.getMessage());
         }
-        return ResponseVo.unknow();
+        return ResponseVo.fail(new GhmallException(throwable).getMessage());
     }
 }

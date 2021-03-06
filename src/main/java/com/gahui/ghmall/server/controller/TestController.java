@@ -1,8 +1,10 @@
 package com.gahui.ghmall.server.controller;
 
+import com.gahui.ghmall.server.constant.ExceptionEnum;
 import com.gahui.ghmall.server.exception.GhmallException;
 import com.gahui.ghmall.server.service.TestService;
 import com.gahui.ghmall.server.vo.ResponseVo;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,14 +22,19 @@ public class TestController {
 
     @RequestMapping("/test")
     public ResponseVo test() {
-        try {
             throw new NullPointerException();
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw new GhmallException(e);
-
-        }
-
 //        return ResponseVo.success();
+    }
+
+    @RequestMapping("/login")
+    public ResponseVo login() {
+
+        return ResponseVo.success();
+    }
+
+    @RequestMapping("/auth")
+    public ResponseVo auth() {
+
+        throw new GhmallException(ExceptionEnum.AUTH);
     }
 }

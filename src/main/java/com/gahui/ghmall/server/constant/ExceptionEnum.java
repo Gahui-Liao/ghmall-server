@@ -23,6 +23,10 @@ public enum ExceptionEnum {
      */
     BIZ("exc_biz", "业务逻辑异常"),
     /**
+     * 权限异常
+     */
+    AUTH("exc_auth","权限异常"),
+    /**
      * 其他异常，如：空指针
      */
     OTH("exc_oth", "未知异常");
@@ -48,6 +52,20 @@ public enum ExceptionEnum {
 
     public String getDesc() {
         return desc;
+    }
+
+    /**
+     * 根据异常编码获取异常枚举
+     * @param code 异常编码
+     * @return 异常描述
+     */
+    public static ExceptionEnum getByCode(String code){
+        for(ExceptionEnum ee : ExceptionEnum.values()){
+            if(ee.getCode().equals(code)){
+                return ee;
+            }
+        }
+        return ExceptionEnum.OTH;
     }
 
     /**

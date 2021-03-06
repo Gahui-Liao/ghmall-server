@@ -1,10 +1,9 @@
 package com.gahui.ghmall.server.aop;
 
+import com.gahui.ghmall.server.vo.ResponseVo;
 import lombok.extern.slf4j.Slf4j;
-import org.aspectj.lang.annotation.After;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
-import org.aspectj.lang.annotation.Pointcut;
+import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.*;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -35,6 +34,9 @@ public class PvAop {
             HttpServletRequest request = sra.getRequest();
             // 获取远程客户端IP
             log.info("remote request addr ===> {}", request.getRemoteAddr());
+            log.info("token ===> {}", request.getHeader("token"));
+            // 权限校验，未校验通过抛出异常
+
         }
 
     }
