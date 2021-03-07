@@ -82,6 +82,19 @@ public class ResponseVo<T> {
     }
 
     /**
+     * 权限校验失败
+     */
+    public static ResponseVo auth() {
+        return new ResponseVo(ResponseEnum.AUTH);
+    }
+
+    public static <T> ResponseVo auth(T t) {
+        ResponseVo responseVo = new ResponseVo(ResponseEnum.AUTH);
+        responseVo.data = t;
+        return responseVo;
+    }
+
+    /**
      * 出现未知错误
      */
     public static ResponseVo unknow() {

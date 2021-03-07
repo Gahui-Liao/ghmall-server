@@ -15,6 +15,10 @@ public enum ResponseEnum {
      */
     FAIL(-1, "fail"),
     /**
+     * 权限校验失败
+     */
+    AUTH(233,"forbidden"),
+    /**
      * 未知
      */
     UNKNOW(9527, "unknow");

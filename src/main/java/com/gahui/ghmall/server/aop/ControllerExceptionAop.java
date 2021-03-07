@@ -44,7 +44,11 @@ public class ControllerExceptionAop {
         log.info("controller访问异常，类名为===>{}，方法名为===>{}",
                 methodSignature.getDeclaringTypeName(),
                 methodSignature.getMethod().getName());
-        if(throwable instanceof GhmallException){
+        if (throwable instanceof GhmallException) {
+            // 如果是权限异常
+            if (((GhmallException) throwable).getExcCode().equals(ExceptionEnum.AUTH.getCode())) {
+                return ResponseVo.auth(throwable.getMessage());
+            }
             return ResponseVo.fail(throwable.getMessage());
         }
         return ResponseVo.fail(new GhmallException(throwable).getMessage());
