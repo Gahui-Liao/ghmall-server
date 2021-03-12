@@ -6,4 +6,10 @@ package com.gahui.ghmall.server.service.pv;
  * @since: 2021/2/5
  **/
 public interface PvService {
+
+    /**
+     * 更新访问量
+     * @return 1：成功，其他：失败
+     */
+    int updatePvCount();
 }

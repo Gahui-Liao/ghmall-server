@@ -16,7 +16,7 @@
            memoryStoreEvictionPolicy="LRU"
            diskExpiryThreadIntervalSeconds="120"/>
 
-    <cache name="pv_cache"
+    <cache name="v_cache"
            maxElementsInMemory="10000"
            overflowToDisk="true"
            timeToIdleSeconds="0"

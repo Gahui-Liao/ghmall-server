@@ -1,6 +1,5 @@
 package com.gahui.ghmall.server.cache.impl;
 
-import com.gahui.ghmall.server.cache.BaseEhCacheService;
 import com.gahui.ghmall.server.cache.GoodsCacheService;
 import org.springframework.stereotype.Service;
 
@@ -10,6 +9,6 @@ import org.springframework.stereotype.Service;
  * @since: 2021/2/4
  **/
 @Service("goodsCacheService")
-public class GoodsCacheServiceImpl extends BaseEhCacheService implements GoodsCacheService {
+public class GoodsCacheServiceImpl implements GoodsCacheService {
 
 }

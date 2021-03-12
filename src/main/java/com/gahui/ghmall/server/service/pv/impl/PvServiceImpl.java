@@ -8,4 +8,8 @@ import com.gahui.ghmall.server.service.pv.PvService;
  * @since: 2021/3/12
  **/
 public class PvServiceImpl implements PvService {
+    @Override
+    public int updatePvCount() {
+        return 0;
+    }
 }
