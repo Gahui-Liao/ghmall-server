@@ -13,4 +13,6 @@ spring:
 
 
 jwt:
-    timeout: 30*60*60
+    #    token生效时间为30分钟，30*60*1000
+    timeout: 1800000
+    secret: YHUYbnkdfbjkjhfdhfj

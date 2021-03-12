@@ -1,4 +1,4 @@
-package com.gahui.ghmall.server.service;
+package com.gahui.ghmall.server.service.pv;
 
 /**
  * @description: 访问相关业务逻辑
