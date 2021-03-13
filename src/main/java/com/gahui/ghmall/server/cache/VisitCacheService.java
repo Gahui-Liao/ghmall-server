@@ -14,8 +14,23 @@ public interface VisitCacheService {
     String V_CACHE = "v_cache";
 
     /**
+     * 增加独立访问量
      * @param ip 访问的IP
      * @return 1-成功；0-失败
      */
-    int putVisit(String ip);
+    int incrVisit(String ip);
+
+    /**
+     * IP访问限制
+     * @param ip 访问的IP
+     * @return 1-允许；0-禁止
+     */
+    int accessAuth(String ip);
+
+    /**
+     * 独立访问量统计
+     * @return
+     */
+    int uv();
+
 }

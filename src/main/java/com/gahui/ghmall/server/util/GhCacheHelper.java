@@ -49,11 +49,6 @@ public class GhCacheHelper {
 
     /**
      * 设置
-     *
-     * @param cacheName
-     * @param key
-     * @param value
-     * @return
      */
     public int set(String cacheName, String key, Object value) {
         Ehcache ehcache = this.getEhcache(cacheName);
@@ -120,10 +115,6 @@ public class GhCacheHelper {
 
     /**
      * 增加value值
-     *
-     * @param cacheName
-     * @param key
-     * @return
      */
     public int incr(String cacheName, String key) {
         Ehcache ehcache = this.getEhcache(cacheName);
@@ -141,6 +132,66 @@ public class GhCacheHelper {
         return 0;
     }
 
+    /**
+     * 正则查询缓存中key的总数
+     */
+    public int sizeByRegex(String cacheName, String regex) {
+        int size = 0;
+        Ehcache ehcache = this.getEhcache(cacheName);
+        if (ehcache != null) {
+            if (regex == null) {
+                return ehcache.getSize();
+            }
+            for (Object temp : ehcache.getKeys()) {
+                String key = temp.toString();
+                if (key.matches(regex)) {
+                    size++;
+                }
+            }
+        }
+        return size;
+    }
+
+    /**
+     * 查询缓存中以prefix开头的key的总数
+     */
+    public int sizeByPrefix(String cacheName, String prefix) {
+        int size = 0;
+        Ehcache ehcache = this.getEhcache(cacheName);
+        if (ehcache != null) {
+            if (prefix == null) {
+                return 0;
+            }
+            for (Object temp : ehcache.getKeys()) {
+                String key = temp.toString();
+                if (key.contains(prefix)) {
+                    size++;
+                }
+            }
+        }
+        return size;
+    }
+
+    /**
+     * 正则删除所有元素
+     */
+    public int removeByRegex(String cacheName, String regex) {
+        Ehcache ehcache = this.getEhcache(cacheName);
+        if (ehcache != null) {
+            if (regex == null) {
+                ehcache.removeAll();
+                return 1;
+            }
+            for (Object temp : ehcache.getKeys()) {
+                String key = temp.toString();
+                if (key.matches(regex)) {
+                    ehcache.remove(key);
+                }
+            }
+            return 1;
+        }
+        return 0;
+    }
 
     /**
      * 根据缓存名称获取对应缓存

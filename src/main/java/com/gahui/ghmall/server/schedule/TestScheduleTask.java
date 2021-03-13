@@ -15,7 +15,7 @@ public class TestScheduleTask {
     @Async("scheduleExecutor")
     @Scheduled(cron = "0/5 * * * * ?")
     public void test(){
-        System.out.println("测试定时任务");
+//        System.out.println("测试定时任务");
 //        throw new IllegalArgumentException("测试定时任务抛出异常");
     }
 }

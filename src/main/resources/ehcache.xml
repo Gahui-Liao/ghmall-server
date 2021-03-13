@@ -9,7 +9,8 @@
 
     <cache name="goods_cache"
            maxElementsInMemory="10000"
-           overflowToDisk="true"
+           eternal="true"
+           overflowToDisk="false"
            timeToIdleSeconds="0"
            timeToLiveSeconds="0"
            diskPersistent="false"
@@ -18,7 +19,8 @@
 
     <cache name="v_cache"
            maxElementsInMemory="10000"
-           overflowToDisk="true"
+           eternal="true"
+           overflowToDisk="false"
            timeToIdleSeconds="0"
            timeToLiveSeconds="0"
            diskPersistent="false"
