@@ -31,7 +31,7 @@ public class TokenServiceImpl implements TokenService {
     private String tokenSecret;
 
     @Override
-    public String encode(Long accountId) {
+    public String encode(Integer accountId) {
         // 过期时间
         Date date = new Date(System.currentTimeMillis() + timeout);
         // 秘钥及加密算法
@@ -56,12 +56,12 @@ public class TokenServiceImpl implements TokenService {
     }
 
     @Override
-    public Long decode(String token) {
+    public Integer decode(String token) {
         try {
             Algorithm algorithm = Algorithm.HMAC256(tokenSecret);
             JWTVerifier verifier = JWT.require(algorithm).build();
             DecodedJWT jwt = verifier.verify(token);
-            Long accountId = jwt.getClaims().get(ACCOUNT_ID).asLong();
+            Integer accountId = jwt.getClaims().get(ACCOUNT_ID).asInt();
             log.info("解析token成功，accountId ===> {}", accountId);
             return accountId;
         } catch (Exception e) {

@@ -1,5 +1,6 @@
 package com.gahui.ghmall.server;
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.annotation.EnableCaching;
@@ -18,6 +19,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @EnableScheduling
 @EnableAsync
 @SpringBootApplication
+@MapperScan({"com.gahui.ghmall.server.mapper", "com.gahui.ghmall.server.dao"})
 public class GhmallServerApplication {
 
     public static void main(String[] args) {

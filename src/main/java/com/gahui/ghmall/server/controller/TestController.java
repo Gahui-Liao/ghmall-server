@@ -3,6 +3,7 @@ package com.gahui.ghmall.server.controller;
 import com.gahui.ghmall.server.constant.ExceptionEnum;
 import com.gahui.ghmall.server.exception.GhmallException;
 import com.gahui.ghmall.server.service.TestService;
+import com.gahui.ghmall.server.service.account.AccountService;
 import com.gahui.ghmall.server.vo.ResponseVo;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,7 +19,7 @@ import javax.annotation.Resource;
 @RestController
 public class TestController {
     @Resource
-    TestService testService;
+    AccountService accountService;
 
     @RequestMapping("/test")
     public ResponseVo test() {
@@ -29,7 +30,7 @@ public class TestController {
     @RequestMapping("/login")
     public ResponseVo login() {
 
-        return ResponseVo.success();
+        return ResponseVo.success(accountService.login("",""));
     }
 
     @RequestMapping("/auth")

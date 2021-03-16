@@ -13,7 +13,7 @@ public interface TokenService {
      * @param accountId   账户标识，用于保存在token中
      * @return token
      */
-    String encode(Long accountId);
+    String encode(Integer accountId);
 
     /**
      * token验证
@@ -21,5 +21,5 @@ public interface TokenService {
      * @param token token字符串
      * @return accountId
      */
-    Long decode(String token);
+    Integer decode(String token);
 }
