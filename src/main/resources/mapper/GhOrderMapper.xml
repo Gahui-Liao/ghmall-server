@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gahui.ghmall.server.mapper.GhOrderMapper">
+  <resultMap id="BaseResultMap" type="com.gahui.ghmall.server.entity.GhOrder">
+    <id column="order_id" jdbcType="INTEGER" property="orderId" />
+    <result column="order_code" jdbcType="VARCHAR" property="orderCode" />
+    <result column="order_status" jdbcType="TINYINT" property="orderStatus" />
+    <result column="order_amount" jdbcType="BIGINT" property="orderAmount" />
+    <result column="effect" jdbcType="TINYINT" property="effect" />
+    <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
+    <result column="modified_time" jdbcType="TIMESTAMP" property="modifiedTime" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    order_id, order_code, order_status, order_amount, effect, created_time, modified_time, 
+    remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from gh_order
+    where order_id = #{orderId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from gh_order
+    where order_id = #{orderId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gahui.ghmall.server.entity.GhOrder">
+    insert into gh_order (order_id, order_code, order_status, 
+      order_amount, effect, created_time, 
+      modified_time, remark)
+    values (#{orderId,jdbcType=INTEGER}, #{orderCode,jdbcType=VARCHAR}, #{orderStatus,jdbcType=TINYINT}, 
+      #{orderAmount,jdbcType=BIGINT}, #{effect,jdbcType=TINYINT}, #{createdTime,jdbcType=TIMESTAMP}, 
+      #{modifiedTime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gahui.ghmall.server.entity.GhOrder">
+    insert into gh_order
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="orderId != null">
+        order_id,
+      </if>
+      <if test="orderCode != null">
+        order_code,
+      </if>
+      <if test="orderStatus != null">
+        order_status,
+      </if>
+      <if test="orderAmount != null">
+        order_amount,
+      </if>
+      <if test="effect != null">
+        effect,
+      </if>
+      <if test="createdTime != null">
+        created_time,
+      </if>
+      <if test="modifiedTime != null">
+        modified_time,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="orderId != null">
+        #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="orderCode != null">
+        #{orderCode,jdbcType=VARCHAR},
+      </if>
+      <if test="orderStatus != null">
+        #{orderStatus,jdbcType=TINYINT},
+      </if>
+      <if test="orderAmount != null">
+        #{orderAmount,jdbcType=BIGINT},
+      </if>
+      <if test="effect != null">
+        #{effect,jdbcType=TINYINT},
+      </if>
+      <if test="createdTime != null">
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedTime != null">
+        #{modifiedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gahui.ghmall.server.entity.GhOrder">
+    update gh_order
+    <set>
+      <if test="orderCode != null">
+        order_code = #{orderCode,jdbcType=VARCHAR},
+      </if>
+      <if test="orderStatus != null">
+        order_status = #{orderStatus,jdbcType=TINYINT},
+      </if>
+      <if test="orderAmount != null">
+        order_amount = #{orderAmount,jdbcType=BIGINT},
+      </if>
+      <if test="effect != null">
+        effect = #{effect,jdbcType=TINYINT},
+      </if>
+      <if test="createdTime != null">
+        created_time = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedTime != null">
+        modified_time = #{modifiedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where order_id = #{orderId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gahui.ghmall.server.entity.GhOrder">
+    update gh_order
+    set order_code = #{orderCode,jdbcType=VARCHAR},
+      order_status = #{orderStatus,jdbcType=TINYINT},
+      order_amount = #{orderAmount,jdbcType=BIGINT},
+      effect = #{effect,jdbcType=TINYINT},
+      created_time = #{createdTime,jdbcType=TIMESTAMP},
+      modified_time = #{modifiedTime,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=VARCHAR}
+    where order_id = #{orderId,jdbcType=INTEGER}
+  </update>
+</mapper>

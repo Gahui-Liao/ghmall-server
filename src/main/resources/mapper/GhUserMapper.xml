@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gahui.ghmall.server.mapper.GhUserMapper">
+  <resultMap id="BaseResultMap" type="com.gahui.ghmall.server.entity.GhUser">
+    <id column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="account_id" jdbcType="INTEGER" property="accountId" />
+    <result column="user_nickname" jdbcType="VARCHAR" property="userNickname" />
+    <result column="user_avatar" jdbcType="VARCHAR" property="userAvatar" />
+    <result column="user_email" jdbcType="VARCHAR" property="userEmail" />
+    <result column="user_phone" jdbcType="VARCHAR" property="userPhone" />
+    <result column="user_birth" jdbcType="DATE" property="userBirth" />
+    <result column="user_gender" jdbcType="TINYINT" property="userGender" />
+    <result column="effect" jdbcType="TINYINT" property="effect" />
+    <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
+    <result column="modified_time" jdbcType="TIMESTAMP" property="modifiedTime" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    user_id, account_id, user_nickname, user_avatar, user_email, user_phone, user_birth, 
+    user_gender, effect, created_time, modified_time, remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from gh_user
+    where user_id = #{userId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from gh_user
+    where user_id = #{userId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gahui.ghmall.server.entity.GhUser">
+    insert into gh_user (user_id, account_id, user_nickname, 
+      user_avatar, user_email, user_phone, 
+      user_birth, user_gender, effect, 
+      created_time, modified_time, remark
+      )
+    values (#{userId,jdbcType=INTEGER}, #{accountId,jdbcType=INTEGER}, #{userNickname,jdbcType=VARCHAR}, 
+      #{userAvatar,jdbcType=VARCHAR}, #{userEmail,jdbcType=VARCHAR}, #{userPhone,jdbcType=VARCHAR}, 
+      #{userBirth,jdbcType=DATE}, #{userGender,jdbcType=TINYINT}, #{effect,jdbcType=TINYINT}, 
+      #{createdTime,jdbcType=TIMESTAMP}, #{modifiedTime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.gahui.ghmall.server.entity.GhUser">
+    insert into gh_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="accountId != null">
+        account_id,
+      </if>
+      <if test="userNickname != null">
+        user_nickname,
+      </if>
+      <if test="userAvatar != null">
+        user_avatar,
+      </if>
+      <if test="userEmail != null">
+        user_email,
+      </if>
+      <if test="userPhone != null">
+        user_phone,
+      </if>
+      <if test="userBirth != null">
+        user_birth,
+      </if>
+      <if test="userGender != null">
+        user_gender,
+      </if>
+      <if test="effect != null">
+        effect,
+      </if>
+      <if test="createdTime != null">
+        created_time,
+      </if>
+      <if test="modifiedTime != null">
+        modified_time,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="accountId != null">
+        #{accountId,jdbcType=INTEGER},
+      </if>
+      <if test="userNickname != null">
+        #{userNickname,jdbcType=VARCHAR},
+      </if>
+      <if test="userAvatar != null">
+        #{userAvatar,jdbcType=VARCHAR},
+      </if>
+      <if test="userEmail != null">
+        #{userEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="userPhone != null">
+        #{userPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="userBirth != null">
+        #{userBirth,jdbcType=DATE},
+      </if>
+      <if test="userGender != null">
+        #{userGender,jdbcType=TINYINT},
+      </if>
+      <if test="effect != null">
+        #{effect,jdbcType=TINYINT},
+      </if>
+      <if test="createdTime != null">
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedTime != null">
+        #{modifiedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gahui.ghmall.server.entity.GhUser">
+    update gh_user
+    <set>
+      <if test="accountId != null">
+        account_id = #{accountId,jdbcType=INTEGER},
+      </if>
+      <if test="userNickname != null">
+        user_nickname = #{userNickname,jdbcType=VARCHAR},
+      </if>
+      <if test="userAvatar != null">
+        user_avatar = #{userAvatar,jdbcType=VARCHAR},
+      </if>
+      <if test="userEmail != null">
+        user_email = #{userEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="userPhone != null">
+        user_phone = #{userPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="userBirth != null">
+        user_birth = #{userBirth,jdbcType=DATE},
+      </if>
+      <if test="userGender != null">
+        user_gender = #{userGender,jdbcType=TINYINT},
+      </if>
+      <if test="effect != null">
+        effect = #{effect,jdbcType=TINYINT},
+      </if>
+      <if test="createdTime != null">
+        created_time = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedTime != null">
+        modified_time = #{modifiedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where user_id = #{userId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gahui.ghmall.server.entity.GhUser">
+    update gh_user
+    set account_id = #{accountId,jdbcType=INTEGER},
+      user_nickname = #{userNickname,jdbcType=VARCHAR},
+      user_avatar = #{userAvatar,jdbcType=VARCHAR},
+      user_email = #{userEmail,jdbcType=VARCHAR},
+      user_phone = #{userPhone,jdbcType=VARCHAR},
+      user_birth = #{userBirth,jdbcType=DATE},
+      user_gender = #{userGender,jdbcType=TINYINT},
+      effect = #{effect,jdbcType=TINYINT},
+      created_time = #{createdTime,jdbcType=TIMESTAMP},
+      modified_time = #{modifiedTime,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=VARCHAR}
+    where user_id = #{userId,jdbcType=INTEGER}
+  </update>
+</mapper>

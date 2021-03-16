@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gahui.ghmall.server.dao.GhGoodsDao">
+
+    <resultMap id="goodsDtoMap" type="com.gahui.ghmall.server.dto.GhGoodsDto">
+        <id column="goods_id" jdbcType="INTEGER" property="goodsId"/>
+        <result column="goods_name" jdbcType="VARCHAR" property="goodsName"/>
+        <result column="goods_icon" jdbcType="VARCHAR" property="goodsIcon"/>
+        <result column="goods_info" jdbcType="VARCHAR" property="goodsInfo"/>
+        <result column="goods_price" jdbcType="INTEGER" property="goodsPrice"/>
+        <result column="goods_stock" jdbcType="INTEGER" property="goodsStock"/>
+        <result column="goods_sold" jdbcType="INTEGER" property="goodsSold"/>
+        <association property="category" resultMap="categoryMap"/>
+        <collection property="imgList" resultMap="goodsImgMap"/>
+    </resultMap>
+
+    <resultMap id="categoryMap" type="com.gahui.ghmall.server.dto.GhCategoryDto">
+        <id column="category_id" jdbcType="INTEGER" property="categoryId"/>
+        <result column="category_name" jdbcType="VARCHAR" property="categoryName"/>
+    </resultMap>
+
+    <resultMap id="goodsImgMap" type="com.gahui.ghmall.server.dto.GhGoodsImgDto">
+        <id column="goods_img_id" jdbcType="INTEGER" property="goodsImgId"/>
+        <result column="goods_img_url" jdbcType="VARCHAR" property="goodsImgUrl"/>
+    </resultMap>
+
+    <select id="listRecommendGoods" resultMap="goodsDtoMap">
+        SELECT gg.goods_id,
+               gg.goods_name,
+               gg.goods_icon,
+               gg.goods_info,
+               gg.goods_price,
+               gg.goods_stock,
+               gg.goods_sold,
+               gc.category_id,
+               gc.category_name,
+               ggi.goods_img_id,
+               ggi.goods_img_url
+        FROM gh_goods gg
+                 LEFT JOIN gh_category gc ON gg.category_id = gc.category_id
+                 LEFT JOIN gh_goods_img ggi ON ggi.goods_id = gg.goods_id
+        WHERE gg.effect = 1
+          AND gc.effect = 1
+          AND ggi.effect = 1
+        ORDER BY gg.goods_sold DESC
+    </select>
+
+    <select id="getGoodsById" resultMap="goodsDtoMap">
+        SELECT gg.goods_id,
+               gg.goods_name,
+               gg.goods_icon,
+               gg.goods_info,
+               gg.goods_price,
+               gg.goods_stock,
+               gg.goods_sold,
+               gc.category_id,
+               gc.category_name,
+               ggi.goods_img_id,
+               ggi.goods_img_url
+        FROM gh_goods gg
+                 LEFT JOIN gh_category gc ON gg.category_id = gc.category_id
+                 LEFT JOIN gh_goods_img ggi ON ggi.goods_id = gg.goods_id
+        WHERE gg.goods_id = #{goodsId}
+          AND gg.effect = 1
+          AND gc.effect = 1
+          AND ggi.effect = 1
+    </select>
+</mapper>

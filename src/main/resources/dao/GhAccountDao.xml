@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gahui.ghmall.server.dao.GhAccountDao">
+
+    <resultMap id="accountDtoMap" type="com.gahui.ghmall.server.dto.GhAccountDto">
+        <id column="account_id" jdbcType="INTEGER" property="accountId"/>
+        <result column="account_name" jdbcType="VARCHAR" property="accountName"/>
+        <result column="account_password" jdbcType="VARCHAR" property="accountPassword"/>
+        <association property="user" resultMap="userMap"/>
+    </resultMap>
+
+    <resultMap id="userMap" type="com.gahui.ghmall.server.dto.GhUserDto">
+        <id column="user_id" jdbcType="INTEGER" property="userId"/>
+        <result column="user_nickname" jdbcType="VARCHAR" property="userNickname"/>
+        <result column="user_avatar" jdbcType="VARCHAR" property="userAvatar"/>
+        <result column="user_email" jdbcType="VARCHAR" property="userEmail"/>
+        <result column="user_phone" jdbcType="VARCHAR" property="userPhone"/>
+        <result column="user_birth" jdbcType="DATE" property="userBirth"/>
+        <result column="user_gender" jdbcType="TINYINT" property="userGender"/>
+    </resultMap>
+    <select id="getAccountByName" resultMap="accountDtoMap">
+        SELECT ga.account_id,
+               ga.account_name,
+               ga.account_password,
+               gu.user_id,
+               gu.user_nickname,
+               gu.user_avatar,
+               gu.user_email,
+               gu.user_phone,
+               gu.user_birth,
+               gu.user_gender
+        FROM gh_account ga
+                 LEFT JOIN gh_user gu ON ga.account_id = gu.account_id
+        WHERE ga.account_name = #{accountName}
+            AND ga.effect = 1
+            AND gu.effect = 1
+    </select>
+
+
+</mapper>

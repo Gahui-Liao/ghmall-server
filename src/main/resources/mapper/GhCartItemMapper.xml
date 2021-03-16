@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gahui.ghmall.server.mapper.GhCartItemMapper">
+  <resultMap id="BaseResultMap" type="com.gahui.ghmall.server.entity.GhCartItem">
+    <id column="cart_item_id" jdbcType="INTEGER" property="cartItemId" />
+    <result column="cart_id" jdbcType="INTEGER" property="cartId" />
+    <result column="goods_id" jdbcType="INTEGER" property="goodsId" />
+    <result column="goods_num" jdbcType="INTEGER" property="goodsNum" />
+    <result column="effect" jdbcType="TINYINT" property="effect" />
+    <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
+    <result column="modified_time" jdbcType="TIMESTAMP" property="modifiedTime" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    cart_item_id, cart_id, goods_id, goods_num, effect, created_time, modified_time, 
+    remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from gh_cart_item
+    where cart_item_id = #{cartItemId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from gh_cart_item
+    where cart_item_id = #{cartItemId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gahui.ghmall.server.entity.GhCartItem">
+    insert into gh_cart_item (cart_item_id, cart_id, goods_id, 
+      goods_num, effect, created_time, 
+      modified_time, remark)
+    values (#{cartItemId,jdbcType=INTEGER}, #{cartId,jdbcType=INTEGER}, #{goodsId,jdbcType=INTEGER}, 
+      #{goodsNum,jdbcType=INTEGER}, #{effect,jdbcType=TINYINT}, #{createdTime,jdbcType=TIMESTAMP}, 
+      #{modifiedTime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gahui.ghmall.server.entity.GhCartItem">
+    insert into gh_cart_item
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="cartItemId != null">
+        cart_item_id,
+      </if>
+      <if test="cartId != null">
+        cart_id,
+      </if>
+      <if test="goodsId != null">
+        goods_id,
+      </if>
+      <if test="goodsNum != null">
+        goods_num,
+      </if>
+      <if test="effect != null">
+        effect,
+      </if>
+      <if test="createdTime != null">
+        created_time,
+      </if>
+      <if test="modifiedTime != null">
+        modified_time,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="cartItemId != null">
+        #{cartItemId,jdbcType=INTEGER},
+      </if>
+      <if test="cartId != null">
+        #{cartId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsId != null">
+        #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsNum != null">
+        #{goodsNum,jdbcType=INTEGER},
+      </if>
+      <if test="effect != null">
+        #{effect,jdbcType=TINYINT},
+      </if>
+      <if test="createdTime != null">
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedTime != null">
+        #{modifiedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gahui.ghmall.server.entity.GhCartItem">
+    update gh_cart_item
+    <set>
+      <if test="cartId != null">
+        cart_id = #{cartId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsId != null">
+        goods_id = #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsNum != null">
+        goods_num = #{goodsNum,jdbcType=INTEGER},
+      </if>
+      <if test="effect != null">
+        effect = #{effect,jdbcType=TINYINT},
+      </if>
+      <if test="createdTime != null">
+        created_time = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedTime != null">
+        modified_time = #{modifiedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where cart_item_id = #{cartItemId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gahui.ghmall.server.entity.GhCartItem">
+    update gh_cart_item
+    set cart_id = #{cartId,jdbcType=INTEGER},
+      goods_id = #{goodsId,jdbcType=INTEGER},
+      goods_num = #{goodsNum,jdbcType=INTEGER},
+      effect = #{effect,jdbcType=TINYINT},
+      created_time = #{createdTime,jdbcType=TIMESTAMP},
+      modified_time = #{modifiedTime,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=VARCHAR}
+    where cart_item_id = #{cartItemId,jdbcType=INTEGER}
+  </update>
+</mapper>

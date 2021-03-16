@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gahui.ghmall.server.mapper.GhGoodsImgMapper">
+  <resultMap id="BaseResultMap" type="com.gahui.ghmall.server.entity.GhGoodsImg">
+    <id column="goods_img_id" jdbcType="INTEGER" property="goodsImgId" />
+    <result column="goods_img_url" jdbcType="VARCHAR" property="goodsImgUrl" />
+    <result column="goods_id" jdbcType="INTEGER" property="goodsId" />
+    <result column="effect" jdbcType="TINYINT" property="effect" />
+    <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
+    <result column="modified_time" jdbcType="TIMESTAMP" property="modifiedTime" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    goods_img_id, goods_img_url, goods_id, effect, created_time, modified_time, remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from gh_goods_img
+    where goods_img_id = #{goodsImgId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from gh_goods_img
+    where goods_img_id = #{goodsImgId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gahui.ghmall.server.entity.GhGoodsImg">
+    insert into gh_goods_img (goods_img_id, goods_img_url, goods_id, 
+      effect, created_time, modified_time, 
+      remark)
+    values (#{goodsImgId,jdbcType=INTEGER}, #{goodsImgUrl,jdbcType=VARCHAR}, #{goodsId,jdbcType=INTEGER}, 
+      #{effect,jdbcType=TINYINT}, #{createdTime,jdbcType=TIMESTAMP}, #{modifiedTime,jdbcType=TIMESTAMP}, 
+      #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gahui.ghmall.server.entity.GhGoodsImg">
+    insert into gh_goods_img
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="goodsImgId != null">
+        goods_img_id,
+      </if>
+      <if test="goodsImgUrl != null">
+        goods_img_url,
+      </if>
+      <if test="goodsId != null">
+        goods_id,
+      </if>
+      <if test="effect != null">
+        effect,
+      </if>
+      <if test="createdTime != null">
+        created_time,
+      </if>
+      <if test="modifiedTime != null">
+        modified_time,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="goodsImgId != null">
+        #{goodsImgId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsImgUrl != null">
+        #{goodsImgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsId != null">
+        #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="effect != null">
+        #{effect,jdbcType=TINYINT},
+      </if>
+      <if test="createdTime != null">
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedTime != null">
+        #{modifiedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gahui.ghmall.server.entity.GhGoodsImg">
+    update gh_goods_img
+    <set>
+      <if test="goodsImgUrl != null">
+        goods_img_url = #{goodsImgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsId != null">
+        goods_id = #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="effect != null">
+        effect = #{effect,jdbcType=TINYINT},
+      </if>
+      <if test="createdTime != null">
+        created_time = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedTime != null">
+        modified_time = #{modifiedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where goods_img_id = #{goodsImgId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gahui.ghmall.server.entity.GhGoodsImg">
+    update gh_goods_img
+    set goods_img_url = #{goodsImgUrl,jdbcType=VARCHAR},
+      goods_id = #{goodsId,jdbcType=INTEGER},
+      effect = #{effect,jdbcType=TINYINT},
+      created_time = #{createdTime,jdbcType=TIMESTAMP},
+      modified_time = #{modifiedTime,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=VARCHAR}
+    where goods_img_id = #{goodsImgId,jdbcType=INTEGER}
+  </update>
+</mapper>
