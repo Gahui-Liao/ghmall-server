@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gahui.ghmall.server.mapper.GhSequenceMapper">
+  <resultMap id="BaseResultMap" type="com.gahui.ghmall.server.entity.GhSequence">
+    <id column="seq_id" jdbcType="INTEGER" property="seqId" />
+    <result column="seq_used" jdbcType="INTEGER" property="seqUsed" />
+    <result column="seq_begin" jdbcType="INTEGER" property="seqBegin" />
+    <result column="seq_step" jdbcType="INTEGER" property="seqStep" />
+    <result column="table_name" jdbcType="VARCHAR" property="tableName" />
+    <result column="column_name" jdbcType="VARCHAR" property="columnName" />
+    <result column="effect" jdbcType="TINYINT" property="effect" />
+    <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
+    <result column="modified_time" jdbcType="TIMESTAMP" property="modifiedTime" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    seq_id, seq_used, seq_begin, seq_step, table_name, column_name, effect, created_time, 
+    modified_time, remark
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from gh_sequence
+    where seq_id = #{seqId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from gh_sequence
+    where seq_id = #{seqId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gahui.ghmall.server.entity.GhSequence">
+    insert into gh_sequence (seq_id, seq_used, seq_begin, 
+      seq_step, table_name, column_name, 
+      effect, created_time, modified_time, 
+      remark)
+    values (#{seqId,jdbcType=INTEGER}, #{seqUsed,jdbcType=INTEGER}, #{seqBegin,jdbcType=INTEGER}, 
+      #{seqStep,jdbcType=INTEGER}, #{tableName,jdbcType=VARCHAR}, #{columnName,jdbcType=VARCHAR}, 
+      #{effect,jdbcType=TINYINT}, #{createdTime,jdbcType=TIMESTAMP}, #{modifiedTime,jdbcType=TIMESTAMP}, 
+      #{remark,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gahui.ghmall.server.entity.GhSequence">
+    insert into gh_sequence
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="seqId != null">
+        seq_id,
+      </if>
+      <if test="seqUsed != null">
+        seq_used,
+      </if>
+      <if test="seqBegin != null">
+        seq_begin,
+      </if>
+      <if test="seqStep != null">
+        seq_step,
+      </if>
+      <if test="tableName != null">
+        table_name,
+      </if>
+      <if test="columnName != null">
+        column_name,
+      </if>
+      <if test="effect != null">
+        effect,
+      </if>
+      <if test="createdTime != null">
+        created_time,
+      </if>
+      <if test="modifiedTime != null">
+        modified_time,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="seqId != null">
+        #{seqId,jdbcType=INTEGER},
+      </if>
+      <if test="seqUsed != null">
+        #{seqUsed,jdbcType=INTEGER},
+      </if>
+      <if test="seqBegin != null">
+        #{seqBegin,jdbcType=INTEGER},
+      </if>
+      <if test="seqStep != null">
+        #{seqStep,jdbcType=INTEGER},
+      </if>
+      <if test="tableName != null">
+        #{tableName,jdbcType=VARCHAR},
+      </if>
+      <if test="columnName != null">
+        #{columnName,jdbcType=VARCHAR},
+      </if>
+      <if test="effect != null">
+        #{effect,jdbcType=TINYINT},
+      </if>
+      <if test="createdTime != null">
+        #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedTime != null">
+        #{modifiedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gahui.ghmall.server.entity.GhSequence">
+    update gh_sequence
+    <set>
+      <if test="seqUsed != null">
+        seq_used = #{seqUsed,jdbcType=INTEGER},
+      </if>
+      <if test="seqBegin != null">
+        seq_begin = #{seqBegin,jdbcType=INTEGER},
+      </if>
+      <if test="seqStep != null">
+        seq_step = #{seqStep,jdbcType=INTEGER},
+      </if>
+      <if test="tableName != null">
+        table_name = #{tableName,jdbcType=VARCHAR},
+      </if>
+      <if test="columnName != null">
+        column_name = #{columnName,jdbcType=VARCHAR},
+      </if>
+      <if test="effect != null">
+        effect = #{effect,jdbcType=TINYINT},
+      </if>
+      <if test="createdTime != null">
+        created_time = #{createdTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedTime != null">
+        modified_time = #{modifiedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where seq_id = #{seqId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gahui.ghmall.server.entity.GhSequence">
+    update gh_sequence
+    set seq_used = #{seqUsed,jdbcType=INTEGER},
+      seq_begin = #{seqBegin,jdbcType=INTEGER},
+      seq_step = #{seqStep,jdbcType=INTEGER},
+      table_name = #{tableName,jdbcType=VARCHAR},
+      column_name = #{columnName,jdbcType=VARCHAR},
+      effect = #{effect,jdbcType=TINYINT},
+      created_time = #{createdTime,jdbcType=TIMESTAMP},
+      modified_time = #{modifiedTime,jdbcType=TIMESTAMP},
+      remark = #{remark,jdbcType=VARCHAR}
+    where seq_id = #{seqId,jdbcType=INTEGER}
+  </update>
+</mapper>

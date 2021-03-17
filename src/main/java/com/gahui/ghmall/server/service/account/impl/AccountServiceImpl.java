@@ -1,8 +1,12 @@
 package com.gahui.ghmall.server.service.account.impl;
 
+import com.gahui.ghmall.server.cache.AccountCacheService;
+import com.gahui.ghmall.server.cache.SequenceCacheService;
 import com.gahui.ghmall.server.constant.ExceptionEnum;
 import com.gahui.ghmall.server.dao.GhAccountDao;
+import com.gahui.ghmall.server.dao.GhSequenceDao;
 import com.gahui.ghmall.server.dto.GhAccountDto;
+import com.gahui.ghmall.server.dto.GhSequenceDto;
 import com.gahui.ghmall.server.exception.GhmallException;
 import com.gahui.ghmall.server.service.account.AccountService;
 import com.gahui.ghmall.server.service.token.TokenService;
@@ -31,6 +35,15 @@ public class AccountServiceImpl implements AccountService {
     @Resource
     TokenService tokenService;
 
+    @Resource
+    AccountCacheService accountCacheService;
+
+    @Resource
+    SequenceCacheService sequenceCacheService;
+
+    @Resource
+    GhSequenceDao ghSequenceDao;
+
     @Override
     public String login(String accountName, String password) {
         GhAccountDto accountDto = ghAccountDao.getAccountByName(accountName);
@@ -48,4 +61,16 @@ public class AccountServiceImpl implements AccountService {
         }
         return null;
     }
+
+    @Override
+    public int register(GhAccountDto accountDto) {
+
+        Integer accountId = accountCacheService.getAccountId();
+        GhSequenceDto sequenceDto = sequenceCacheService.getAccountSeqDto();
+        if (accountId > sequenceDto.getSeqUsed() && accountId <= sequenceDto.getSeqUsed() + sequenceDto.getSeqStep()) {
+
+        }
+        return 0;
+    }
+
 }

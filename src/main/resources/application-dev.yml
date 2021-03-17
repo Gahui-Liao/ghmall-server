@@ -9,7 +9,7 @@ spring:
     datasource:
         url: jdbc:mysql://127.0.0.1:3306/ghmall?useUnicode=true&characterEncoding=utf8&useSSL=false
         username: root
-        password: gahui
+        password: liaojiaxi
         driver-class-name: com.mysql.jdbc.Driver
 
 # jwt配置
@@ -30,6 +30,8 @@ mybatis:
     mapper-locations:
         - classpath*:mapper/*.xml
         - classpath*:dao/*.xml
+    configuration:
+        map-underscore-to-camel-case: true
 
 # 分页配置
 pagehelper:

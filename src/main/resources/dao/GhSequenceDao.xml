@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gahui.ghmall.server.dao.GhSequenceDao">
+
+    <select id="getSeqByTableNameAndColumnName" resultType="com.gahui.ghmall.server.dto.GhSequenceDto">
+        SELECT gs.seq_id,
+               gs.seq_used,
+               gs.seq_begin,
+               gs.seq_step,
+               gs.table_name,
+               gs.column_name
+        FROM gh_sequence gs
+        WHERE gs.table_name = #{tableName}
+          AND gs.column_name = #{columnName}
+          AND gs.effect = 1
+    </select>
+</mapper>
