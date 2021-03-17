@@ -13,8 +13,10 @@ public interface GhAccountDao extends GhAccountMapper {
 
     /**
      * 根据账户名查询账户信息
+     *
      * @param accountName
      * @return
      */
     GhAccountDto getAccountByName(@Param("accountName") String accountName);
+
 }

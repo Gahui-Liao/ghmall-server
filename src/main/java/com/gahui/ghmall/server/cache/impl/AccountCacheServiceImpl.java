@@ -34,25 +34,33 @@ public class AccountCacheServiceImpl implements AccountCacheService {
     public Integer getAccountId() {
         GhSequenceDto seqDto = sequenceCacheService.getAccountSeqDto();
         if (seqDto == null) {
-            seqDto = ghSequenceDao.getSeqByTableNameAndColumnName("gh_account", "account_id");
-            sequenceCacheService.setAccountSeqDto(seqDto);
-            ghCacheHelper.set(ACCOUNT_CACHE, ACCOUNT_ID_PREFIX, seqDto.getSeqUsed());
+            return this.getInitAccountId();
         }
         Integer accountId = (Integer) ghCacheHelper.get(ACCOUNT_CACHE, ACCOUNT_ID_PREFIX).getObjectValue();
         // 如果大于等于账户标识序列段最大值，则重新获取序列段
         if (accountId >= seqDto.getSeqUsed() + seqDto.getSeqStep()) {
-            seqDto = ghSequenceDao.getSeqByTableNameAndColumnName("gh_account", "account_id");
-            sequenceCacheService.setAccountSeqDto(seqDto);
-            ghCacheHelper.set(ACCOUNT_CACHE, ACCOUNT_ID_PREFIX, seqDto.getSeqUsed());
-            GhSequence ghSequence = new GhSequence();
-            BeanUtils.copyProperties(seqDto, ghSequence);
-            ghSequence.setSeqUsed(seqDto.getSeqUsed() + seqDto.getSeqStep());
-            ghSequenceDao.updateByPrimaryKeySelective(ghSequence);
-            return seqDto.getSeqUsed() + 1;
+            return this.getInitAccountId();
         }
         if (ghCacheHelper.incr(ACCOUNT_CACHE, ACCOUNT_ID_PREFIX) == 1) {
             return (Integer) ghCacheHelper.get(ACCOUNT_CACHE, ACCOUNT_ID_PREFIX).getObjectValue();
         }
         return null;
+    }
+
+    /**
+     * 获取初始化的accountId
+     *
+     * @return accountId
+     */
+    private Integer getInitAccountId() {
+        GhSequenceDto seqDto;
+        seqDto = ghSequenceDao.getSeqByTableNameAndColumnName("gh_account", "account_id");
+        sequenceCacheService.setAccountSeqDto(seqDto);
+        ghCacheHelper.set(ACCOUNT_CACHE, ACCOUNT_ID_PREFIX, seqDto.getSeqUsed());
+        GhSequence ghSequence = new GhSequence();
+        BeanUtils.copyProperties(seqDto, ghSequence);
+        ghSequence.setSeqUsed(seqDto.getSeqUsed() + seqDto.getSeqStep());
+        ghSequenceDao.updateByPrimaryKeySelective(ghSequence);
+        return seqDto.getSeqUsed() + 1;
     }
 }

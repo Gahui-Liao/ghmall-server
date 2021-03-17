@@ -122,10 +122,10 @@ public class GhCacheHelper {
         if (ehcache != null) {
             element = ehcache.get(key);
             if (element == null) {
-                this.put(cacheName, key, 1L);
+                this.put(cacheName, key, 1);
                 return 1;
             }
-            Long value = (Long) element.getObjectValue() + 1;
+            Integer value = (Integer) element.getObjectValue() + 1;
             this.put(cacheName, key, value);
             return 1;
         }
