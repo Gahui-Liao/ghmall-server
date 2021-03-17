@@ -62,6 +62,11 @@ public class AccountServiceImpl implements AccountService {
         return null;
     }
 
+    @Override
+    public int validateAccountName(String accountName) {
+        return ghAccountDao.countAccountByName(accountName);
+    }
+
     /**
      * 事务控制
      */
@@ -99,6 +104,9 @@ public class AccountServiceImpl implements AccountService {
         }
         if (accountDto.getAccountName() == null || "".equals(accountDto.getAccountName().trim())) {
             throw new GhmallException(ExceptionEnum.BIZ.getCode(), "账户名为空！");
+        }
+        if (ghAccountDao.countAccountByName(accountDto.getAccountName()) > 0) {
+            throw new GhmallException(ExceptionEnum.BIZ.getCode(), "账户已经存在！");
         }
         if (accountDto.getAccountPassword() == null || "".equals(accountDto.getAccountPassword())) {
             throw new GhmallException(ExceptionEnum.BIZ.getCode(), "密码为空！");

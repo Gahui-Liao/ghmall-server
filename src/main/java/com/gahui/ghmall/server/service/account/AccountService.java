@@ -19,6 +19,14 @@ public interface AccountService {
     String login(String accountName, String password);
 
     /**
+     * 校验账户名是否存在
+     *
+     * @param accountName 账户名
+     * @return int
+     */
+    int validateAccountName(String accountName);
+
+    /**
      * 注册
      *
      * @param accountDto
