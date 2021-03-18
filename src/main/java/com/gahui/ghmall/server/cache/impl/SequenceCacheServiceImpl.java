@@ -2,8 +2,8 @@ package com.gahui.ghmall.server.cache.impl;
 
 import com.gahui.ghmall.server.cache.SequenceCacheService;
 import com.gahui.ghmall.server.constant.CacheEnum;
-import com.gahui.ghmall.server.dao.GhSequenceDao;
-import com.gahui.ghmall.server.dto.GhSequenceDto;
+import com.gahui.ghmall.server.dao.SequenceDao;
+import com.gahui.ghmall.server.dto.SequenceDto;
 import com.gahui.ghmall.server.entity.GhSequence;
 import com.gahui.ghmall.server.util.GhCacheHelper;
 import org.springframework.beans.BeanUtils;
@@ -23,24 +23,24 @@ public class SequenceCacheServiceImpl implements SequenceCacheService {
     GhCacheHelper ghCacheHelper;
 
     @Resource
-    GhSequenceDao ghSequenceDao;
+    SequenceDao sequenceDao;
 
     @Override
-    public GhSequenceDto getSeqDtoByKey(String seqKey) {
+    public SequenceDto getSeqDtoByKey(String seqKey) {
         if (ghCacheHelper.get(SEQ_CACHE, seqKey) != null) {
-            return (GhSequenceDto) ghCacheHelper.get(SEQ_CACHE, seqKey).getObjectValue();
+            return (SequenceDto) ghCacheHelper.get(SEQ_CACHE, seqKey).getObjectValue();
         }
         return null;
     }
 
     @Override
-    public int setSeqDtoByKey(GhSequenceDto seqDto, String seqKey) {
+    public int setSeqDtoByKey(SequenceDto seqDto, String seqKey) {
         return ghCacheHelper.set(SEQ_CACHE, seqKey, seqDto);
     }
 
     @Override
     public Integer getSeqIdByEnum(CacheEnum cacheEnum) {
-        GhSequenceDto seqDto = this.getSeqDtoByKey(cacheEnum.getSeqPrefix());
+        SequenceDto seqDto = this.getSeqDtoByKey(cacheEnum.getSeqPrefix());
         if (seqDto == null) {
             return this.getInitId(cacheEnum);
         }
@@ -61,13 +61,13 @@ public class SequenceCacheServiceImpl implements SequenceCacheService {
      * @return int
      */
     private Integer getInitId(CacheEnum cacheEnum) {
-        GhSequenceDto seqDto = ghSequenceDao.getSeqByTableNameAndColumnName(cacheEnum.getTableName(), cacheEnum.getColumnName());
+        SequenceDto seqDto = sequenceDao.getSeqByTableNameAndColumnName(cacheEnum.getTableName(), cacheEnum.getColumnName());
         this.setSeqDtoByKey(seqDto, cacheEnum.getSeqPrefix());
-        ghCacheHelper.set(SEQ_CACHE, cacheEnum.getIdPrefix(), seqDto.getSeqUsed());
+        ghCacheHelper.set(SEQ_CACHE, cacheEnum.getIdPrefix(), seqDto.getSeqUsed() + 1);
         GhSequence ghSequence = new GhSequence();
         BeanUtils.copyProperties(seqDto, ghSequence);
         ghSequence.setSeqUsed(seqDto.getSeqUsed() + seqDto.getSeqStep());
-        ghSequenceDao.updateByPrimaryKeySelective(ghSequence);
+        sequenceDao.updateByPrimaryKeySelective(ghSequence);
         return seqDto.getSeqUsed() + 1;
     }
 }

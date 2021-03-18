@@ -7,5 +7,5 @@ import com.gahui.ghmall.server.mapper.GhUserMapper;
  * @author: Gahui
  * @since: 2021/3/17
  **/
-public interface GhUserDao extends GhUserMapper {
+public interface UserDao extends GhUserMapper {
 }

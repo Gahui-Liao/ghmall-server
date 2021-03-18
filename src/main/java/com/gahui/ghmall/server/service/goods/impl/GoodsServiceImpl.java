@@ -1,14 +1,13 @@
 package com.gahui.ghmall.server.service.goods.impl;
 
-import com.gahui.ghmall.server.dao.GhGoodsDao;
-import com.gahui.ghmall.server.dto.GhGoodsDto;
+import com.gahui.ghmall.server.dao.GoodsDao;
+import com.gahui.ghmall.server.dto.GoodsDetailDto;
 import com.gahui.ghmall.server.service.goods.GoodsService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import java.util.List;
 
 /**
  * @description: 商品业务逻辑具体实现类
@@ -19,11 +18,11 @@ import java.util.List;
 public class GoodsServiceImpl implements GoodsService {
 
     @Resource
-    GhGoodsDao ghGoodsDao;
+    GoodsDao goodsDao;
 
     @Override
-    public GhGoodsDto getGoodsById(Integer goodsId) {
-        return null;
+    public GoodsDetailDto getGoodsById(Integer goodsId) {
+        return goodsDao.getGoodsDetailById(goodsId);
     }
 
     @Override
@@ -31,7 +30,6 @@ public class GoodsServiceImpl implements GoodsService {
         pageNum = pageNum == null ? 1 : pageNum;
         pageSize = pageSize == null ? 10 : pageSize;
         PageHelper.startPage(pageNum, pageSize);
-        List<GhGoodsDto> goodsList = ghGoodsDao.listRecommendGoods();
-        return new PageInfo<>(goodsList);
+        return new PageInfo<>(goodsDao.listRecommendGoods());
     }
 }

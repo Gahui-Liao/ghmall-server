@@ -11,6 +11,8 @@ public class GhOrder {
 
     private Long orderAmount;
 
+    private Integer accountId;
+
     private Byte effect;
 
     private Date createdTime;
@@ -49,6 +51,14 @@ public class GhOrder {
 
     public void setOrderAmount(Long orderAmount) {
         this.orderAmount = orderAmount;
+    }
+
+    public Integer getAccountId() {
+        return accountId;
+    }
+
+    public void setAccountId(Integer accountId) {
+        this.accountId = accountId;
     }
 
     public Byte getEffect() {

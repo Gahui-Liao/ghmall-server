@@ -1,6 +1,6 @@
 package com.gahui.ghmall.server.service.goods;
 
-import com.gahui.ghmall.server.dto.GhGoodsDto;
+import com.gahui.ghmall.server.dto.GoodsDetailDto;
 import com.github.pagehelper.PageInfo;
 
 /**
@@ -15,7 +15,7 @@ public interface GoodsService {
      * @param goodsId 商品标识
      * @return dto
      */
-    GhGoodsDto getGoodsById(Integer goodsId);
+    GoodsDetailDto getGoodsById(Integer goodsId);
 
     /**
      * 分页查询推荐商品

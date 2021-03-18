@@ -1,6 +1,6 @@
 package com.gahui.ghmall.server.controller;
 
-import com.gahui.ghmall.server.dto.GhAccountDto;
+import com.gahui.ghmall.server.dto.AccountDto;
 import com.gahui.ghmall.server.service.account.AccountService;
 import com.gahui.ghmall.server.vo.ResponseVo;
 import org.springframework.web.bind.annotation.*;
@@ -20,8 +20,8 @@ public class AccountController {
     AccountService accountService;
 
     @PostMapping("/login")
-    public ResponseVo login(@RequestBody GhAccountDto ghAccountDto) {
-        String token = accountService.login(ghAccountDto.getAccountName(), ghAccountDto.getAccountPassword());
+    public ResponseVo login(@RequestBody AccountDto accountDto) {
+        String token = accountService.login(accountDto.getAccountName(), accountDto.getAccountPassword());
         if (token != null) {
             return ResponseVo.success(token);
         }
@@ -38,8 +38,8 @@ public class AccountController {
 
 
     @PostMapping("/register")
-    public ResponseVo register(@RequestBody GhAccountDto ghAccountDto) {
-        if (accountService.register(ghAccountDto) == 1) {
+    public ResponseVo register(@RequestBody AccountDto accountDto) {
+        if (accountService.register(accountDto) == 1) {
             return ResponseVo.success();
         }
         return ResponseVo.fail();

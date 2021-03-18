@@ -12,7 +12,7 @@ import java.util.Date;
  **/
 @Getter
 @Setter
-public class GhUserDto {
+public class UserDto {
 
     private Integer userId;
 

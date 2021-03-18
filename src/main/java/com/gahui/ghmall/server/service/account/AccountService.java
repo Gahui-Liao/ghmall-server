@@ -1,6 +1,6 @@
 package com.gahui.ghmall.server.service.account;
 
-import com.gahui.ghmall.server.dto.GhAccountDto;
+import com.gahui.ghmall.server.dto.AccountDto;
 
 /**
  * @description: 账户相关业务接口
@@ -32,5 +32,5 @@ public interface AccountService {
      * @param accountDto
      * @return
      */
-    int register(GhAccountDto accountDto);
+    int register(AccountDto accountDto);
 }

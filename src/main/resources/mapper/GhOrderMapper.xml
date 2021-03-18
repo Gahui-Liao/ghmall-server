@@ -6,14 +6,15 @@
     <result column="order_code" jdbcType="VARCHAR" property="orderCode" />
     <result column="order_status" jdbcType="TINYINT" property="orderStatus" />
     <result column="order_amount" jdbcType="BIGINT" property="orderAmount" />
+    <result column="account_id" jdbcType="INTEGER" property="accountId" />
     <result column="effect" jdbcType="TINYINT" property="effect" />
     <result column="created_time" jdbcType="TIMESTAMP" property="createdTime" />
     <result column="modified_time" jdbcType="TIMESTAMP" property="modifiedTime" />
     <result column="remark" jdbcType="VARCHAR" property="remark" />
   </resultMap>
   <sql id="Base_Column_List">
-    order_id, order_code, order_status, order_amount, effect, created_time, modified_time, 
-    remark
+    order_id, order_code, order_status, order_amount, account_id, effect, created_time, 
+    modified_time, remark
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -27,11 +28,13 @@
   </delete>
   <insert id="insert" parameterType="com.gahui.ghmall.server.entity.GhOrder">
     insert into gh_order (order_id, order_code, order_status, 
-      order_amount, effect, created_time, 
-      modified_time, remark)
+      order_amount, account_id, effect, 
+      created_time, modified_time, remark
+      )
     values (#{orderId,jdbcType=INTEGER}, #{orderCode,jdbcType=VARCHAR}, #{orderStatus,jdbcType=TINYINT}, 
-      #{orderAmount,jdbcType=BIGINT}, #{effect,jdbcType=TINYINT}, #{createdTime,jdbcType=TIMESTAMP}, 
-      #{modifiedTime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR})
+      #{orderAmount,jdbcType=BIGINT}, #{accountId,jdbcType=INTEGER}, #{effect,jdbcType=TINYINT}, 
+      #{createdTime,jdbcType=TIMESTAMP}, #{modifiedTime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.gahui.ghmall.server.entity.GhOrder">
     insert into gh_order
@@ -47,6 +50,9 @@
       </if>
       <if test="orderAmount != null">
         order_amount,
+      </if>
+      <if test="accountId != null">
+        account_id,
       </if>
       <if test="effect != null">
         effect,
@@ -74,6 +80,9 @@
       <if test="orderAmount != null">
         #{orderAmount,jdbcType=BIGINT},
       </if>
+      <if test="accountId != null">
+        #{accountId,jdbcType=INTEGER},
+      </if>
       <if test="effect != null">
         #{effect,jdbcType=TINYINT},
       </if>
@@ -100,6 +109,9 @@
       <if test="orderAmount != null">
         order_amount = #{orderAmount,jdbcType=BIGINT},
       </if>
+      <if test="accountId != null">
+        account_id = #{accountId,jdbcType=INTEGER},
+      </if>
       <if test="effect != null">
         effect = #{effect,jdbcType=TINYINT},
       </if>
@@ -120,6 +132,7 @@
     set order_code = #{orderCode,jdbcType=VARCHAR},
       order_status = #{orderStatus,jdbcType=TINYINT},
       order_amount = #{orderAmount,jdbcType=BIGINT},
+      account_id = #{accountId,jdbcType=INTEGER},
       effect = #{effect,jdbcType=TINYINT},
       created_time = #{createdTime,jdbcType=TIMESTAMP},
       modified_time = #{modifiedTime,jdbcType=TIMESTAMP},

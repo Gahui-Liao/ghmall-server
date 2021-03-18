@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.gahui.ghmall.server.dao.GhSequenceDao">
+<mapper namespace="com.gahui.ghmall.server.dao.SequenceDao">
 
-    <select id="getSeqByTableNameAndColumnName" resultType="com.gahui.ghmall.server.dto.GhSequenceDto">
+    <select id="getSeqByTableNameAndColumnName" resultType="com.gahui.ghmall.server.dto.SequenceDto">
         SELECT gs.seq_id,
                gs.seq_used,
                gs.seq_begin,

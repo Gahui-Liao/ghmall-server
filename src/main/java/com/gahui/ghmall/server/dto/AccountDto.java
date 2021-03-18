@@ -10,7 +10,7 @@ import lombok.Setter;
  **/
 @Getter
 @Setter
-public class GhAccountDto {
+public class AccountDto {
 
     private Integer accountId;
 
@@ -18,5 +18,5 @@ public class GhAccountDto {
 
     private String accountPassword;
 
-    private GhUserDto user;
+    private UserDto user;
 }

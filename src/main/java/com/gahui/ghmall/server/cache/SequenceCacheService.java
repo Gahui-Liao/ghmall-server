@@ -1,7 +1,7 @@
 package com.gahui.ghmall.server.cache;
 
 import com.gahui.ghmall.server.constant.CacheEnum;
-import com.gahui.ghmall.server.dto.GhSequenceDto;
+import com.gahui.ghmall.server.dto.SequenceDto;
 
 /**
  * @description: 序列缓存接口
@@ -23,7 +23,7 @@ public interface SequenceCacheService {
      * @param seqKey 序列名
      * @return dto
      */
-    GhSequenceDto getSeqDtoByKey(String seqKey);
+    SequenceDto getSeqDtoByKey(String seqKey);
 
     /**
      * 根据key设置序列信息
@@ -32,7 +32,7 @@ public interface SequenceCacheService {
      * @param seqKey key
      * @return 1：成功，其他失败
      */
-    int setSeqDtoByKey(GhSequenceDto seqDto, String seqKey);
+    int setSeqDtoByKey(SequenceDto seqDto, String seqKey);
 
     /**
      * 根据枚举获取对应的唯一标识

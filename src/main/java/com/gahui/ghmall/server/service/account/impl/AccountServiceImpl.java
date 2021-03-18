@@ -3,10 +3,10 @@ package com.gahui.ghmall.server.service.account.impl;
 import com.gahui.ghmall.server.cache.SequenceCacheService;
 import com.gahui.ghmall.server.constant.CacheEnum;
 import com.gahui.ghmall.server.constant.ExceptionEnum;
-import com.gahui.ghmall.server.dao.GhAccountDao;
-import com.gahui.ghmall.server.dao.GhUserDao;
-import com.gahui.ghmall.server.dto.GhAccountDto;
-import com.gahui.ghmall.server.dto.GhUserDto;
+import com.gahui.ghmall.server.dao.AccountDao;
+import com.gahui.ghmall.server.dao.UserDao;
+import com.gahui.ghmall.server.dto.AccountDto;
+import com.gahui.ghmall.server.dto.UserDto;
 import com.gahui.ghmall.server.entity.GhAccount;
 import com.gahui.ghmall.server.entity.GhUser;
 import com.gahui.ghmall.server.exception.GhmallException;
@@ -34,7 +34,7 @@ public class AccountServiceImpl implements AccountService {
     private String aesKey;
 
     @Resource
-    GhAccountDao ghAccountDao;
+    AccountDao accountDao;
 
     @Resource
     TokenService tokenService;
@@ -43,11 +43,11 @@ public class AccountServiceImpl implements AccountService {
     SequenceCacheService sequenceCacheService;
 
     @Resource
-    GhUserDao ghUserDao;
+    UserDao userDao;
 
     @Override
     public String login(String accountName, String password) {
-        GhAccountDto accountDto = ghAccountDao.getAccountByName(accountName);
+        AccountDto accountDto = accountDao.getAccountByName(accountName);
         if (accountDto == null) {
             throw new GhmallException(ExceptionEnum.BIZ.getCode(), "用户不存在！");
         }
@@ -65,7 +65,7 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public int validateAccountName(String accountName) {
-        return ghAccountDao.countAccountByName(accountName);
+        return accountDao.countAccountByName(accountName);
     }
 
     /**
@@ -73,7 +73,7 @@ public class AccountServiceImpl implements AccountService {
      */
     @Transactional(rollbackFor = Exception.class)
     @Override
-    public int register(GhAccountDto accountDto) {
+    public int register(AccountDto accountDto) {
         this.paramValidate(accountDto);
         Integer accountId = sequenceCacheService.getSeqIdByEnum(CacheEnum.ACCOUNT);
         accountDto.setAccountId(accountId);
@@ -85,7 +85,7 @@ public class AccountServiceImpl implements AccountService {
             log.error("密码加密错误！password ===> {}", accountDto.getAccountPassword());
             throw new GhmallException(ExceptionEnum.BIZ.getCode(), "密码加密错误！");
         }
-        GhUserDto userDto = new GhUserDto();
+        UserDto userDto = new UserDto();
         this.paramFill(userDto, accountDto);
         // 简化处理，账户与用户，一一对应，即userId == accountId
         userDto.setUserId(accountId);
@@ -99,14 +99,14 @@ public class AccountServiceImpl implements AccountService {
      *
      * @param accountDto dto
      */
-    private void paramValidate(GhAccountDto accountDto) {
+    private void paramValidate(AccountDto accountDto) {
         if (accountDto == null) {
             throw new GhmallException(ExceptionEnum.BIZ.getCode(), "注册信息为空！");
         }
         if (accountDto.getAccountName() == null || "".equals(accountDto.getAccountName().trim())) {
             throw new GhmallException(ExceptionEnum.BIZ.getCode(), "账户名为空！");
         }
-        if (ghAccountDao.countAccountByName(accountDto.getAccountName()) > 0) {
+        if (accountDao.countAccountByName(accountDto.getAccountName()) > 0) {
             throw new GhmallException(ExceptionEnum.BIZ.getCode(), "账户已经存在！");
         }
         if (accountDto.getAccountPassword() == null || "".equals(accountDto.getAccountPassword())) {
@@ -120,11 +120,11 @@ public class AccountServiceImpl implements AccountService {
      * @param userDto    填充的用户dto
      * @param accountDto 账户dto
      */
-    private void paramFill(GhUserDto userDto, GhAccountDto accountDto) {
+    private void paramFill(UserDto userDto, AccountDto accountDto) {
         if (accountDto == null) {
             return;
         }
-        GhUserDto temp = accountDto.getUser();
+        UserDto temp = accountDto.getUser();
         if (temp != null) {
             BeanUtils.copyProperties(temp, userDto);
         }
@@ -136,13 +136,13 @@ public class AccountServiceImpl implements AccountService {
      * @param accountDto 账户dto
      * @return 1:成功
      */
-    private int insertAccount(GhAccountDto accountDto) {
+    private int insertAccount(AccountDto accountDto) {
         GhAccount account = new GhAccount();
         BeanUtils.copyProperties(accountDto, account);
-        ghAccountDao.insertSelective(account);
+        accountDao.insertSelective(account);
         GhUser user = new GhUser();
         BeanUtils.copyProperties(accountDto.getUser(), user);
-        ghUserDao.insertSelective(user);
+        userDao.insertSelective(user);
         return 1;
     }
 

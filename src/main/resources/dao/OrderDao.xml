@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gahui.ghmall.server.dao.OrderDao">
+
+    <resultMap id="orderDtoMap" type="com.gahui.ghmall.server.dto.OrderDto">
+        <id column="order_id" jdbcType="INTEGER" property="orderId"/>
+        <result column="order_code" jdbcType="VARCHAR" property="orderCode"/>
+        <result column="order_status" jdbcType="TINYINT" property="orderStatus"/>
+        <result column="order_amount" jdbcType="BIGINT" property="orderAmount"/>
+        <result column="account_id" jdbcType="INTEGER" property="accountId"/>
+        <collection property="orderGoodsList" resultMap="orderGoodsMap"/>
+    </resultMap>
+
+    <resultMap id="orderGoodsMap" type="com.gahui.ghmall.server.dto.OrderGoodsDto">
+        <result column="goods_name" jdbcType="VARCHAR" property="goodsName"/>
+        <result column="goods_icon" jdbcType="VARCHAR" property="goodsIcon"/>
+    </resultMap>
+
+    <select id="listOrderByAccountId" resultMap="orderDtoMap">
+        SELECT go.order_id,
+               go.order_code,
+               go.order_status,
+               go.order_amount,
+               go.account_id,
+               gg.goods_name,
+               gg.goods_icon
+        FROM gh_order go
+                 LEFT JOIN gh_order_item goi ON go.order_id = goi.order_id
+                 LEFT JOIN gh_goods gg ON goi.goods_id = gg.goods_id
+        WHERE go.account_id = #{accountId}
+          AND go.effect = 1
+          AND goi.effect = 1
+          AND gg.effect = 1
+    </select>
+</mapper>

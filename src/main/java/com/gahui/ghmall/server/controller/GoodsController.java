@@ -28,11 +28,10 @@ public class GoodsController {
         return ResponseVo.success(goodsService.getGoodsById(goodsId));
     }
 
-    @GetMapping("/recommend/detail/{pageNum}/{pageSize}")
+    @GetMapping("/recommend/{pageNum}/{pageSize}")
     public ResponseVo listRecommendGoods(@PathVariable("pageNum") Integer pageNum,
                                          @PathVariable("pageSize") Integer pageSize) {
         return ResponseVo.success(goodsService.listRecommendGoods(pageNum, pageSize));
-
     }
 
 

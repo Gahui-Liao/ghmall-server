@@ -5,7 +5,11 @@ import java.util.Date;
 public class GhOrderItem {
     private Integer orderItemId;
 
+    private String orderItemCode;
+
     private Byte orderItemStatus;
+
+    private Integer orderId;
 
     private Integer goodsId;
 
@@ -27,12 +31,28 @@ public class GhOrderItem {
         this.orderItemId = orderItemId;
     }
 
+    public String getOrderItemCode() {
+        return orderItemCode;
+    }
+
+    public void setOrderItemCode(String orderItemCode) {
+        this.orderItemCode = orderItemCode == null ? null : orderItemCode.trim();
+    }
+
     public Byte getOrderItemStatus() {
         return orderItemStatus;
     }
 
     public void setOrderItemStatus(Byte orderItemStatus) {
         this.orderItemStatus = orderItemStatus;
+    }
+
+    public Integer getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(Integer orderId) {
+        this.orderId = orderId;
     }
 
     public Integer getGoodsId() {

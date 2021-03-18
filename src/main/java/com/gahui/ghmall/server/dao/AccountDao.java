@@ -1,6 +1,6 @@
 package com.gahui.ghmall.server.dao;
 
-import com.gahui.ghmall.server.dto.GhAccountDto;
+import com.gahui.ghmall.server.dto.AccountDto;
 import com.gahui.ghmall.server.mapper.GhAccountMapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -9,7 +9,7 @@ import org.apache.ibatis.annotations.Param;
  * @author: Gahui
  * @since: 2021/3/16
  **/
-public interface GhAccountDao extends GhAccountMapper {
+public interface AccountDao extends GhAccountMapper {
 
     /**
      * 根据账户名查询账户信息
@@ -17,7 +17,7 @@ public interface GhAccountDao extends GhAccountMapper {
      * @param accountName 账户名
      * @return dto
      */
-    GhAccountDto getAccountByName(@Param("accountName") String accountName);
+    AccountDto getAccountByName(@Param("accountName") String accountName);
 
     /**
      * 账户名是否存在

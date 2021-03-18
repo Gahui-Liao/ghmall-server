@@ -3,7 +3,9 @@
 <mapper namespace="com.gahui.ghmall.server.mapper.GhOrderItemMapper">
   <resultMap id="BaseResultMap" type="com.gahui.ghmall.server.entity.GhOrderItem">
     <id column="order_item_id" jdbcType="INTEGER" property="orderItemId" />
+    <result column="order_item_code" jdbcType="VARCHAR" property="orderItemCode" />
     <result column="order_item_status" jdbcType="TINYINT" property="orderItemStatus" />
+    <result column="order_id" jdbcType="INTEGER" property="orderId" />
     <result column="goods_id" jdbcType="INTEGER" property="goodsId" />
     <result column="goods_num" jdbcType="INTEGER" property="goodsNum" />
     <result column="effect" jdbcType="TINYINT" property="effect" />
@@ -12,8 +14,8 @@
     <result column="remark" jdbcType="VARCHAR" property="remark" />
   </resultMap>
   <sql id="Base_Column_List">
-    order_item_id, order_item_status, goods_id, goods_num, effect, created_time, modified_time, 
-    remark
+    order_item_id, order_item_code, order_item_status, order_id, goods_id, goods_num, 
+    effect, created_time, modified_time, remark
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
@@ -26,12 +28,14 @@
     where order_item_id = #{orderItemId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.gahui.ghmall.server.entity.GhOrderItem">
-    insert into gh_order_item (order_item_id, order_item_status, goods_id, 
-      goods_num, effect, created_time, 
-      modified_time, remark)
-    values (#{orderItemId,jdbcType=INTEGER}, #{orderItemStatus,jdbcType=TINYINT}, #{goodsId,jdbcType=INTEGER}, 
-      #{goodsNum,jdbcType=INTEGER}, #{effect,jdbcType=TINYINT}, #{createdTime,jdbcType=TIMESTAMP}, 
-      #{modifiedTime,jdbcType=TIMESTAMP}, #{remark,jdbcType=VARCHAR})
+    insert into gh_order_item (order_item_id, order_item_code, order_item_status, 
+      order_id, goods_id, goods_num, 
+      effect, created_time, modified_time, 
+      remark)
+    values (#{orderItemId,jdbcType=INTEGER}, #{orderItemCode,jdbcType=VARCHAR}, #{orderItemStatus,jdbcType=TINYINT}, 
+      #{orderId,jdbcType=INTEGER}, #{goodsId,jdbcType=INTEGER}, #{goodsNum,jdbcType=INTEGER}, 
+      #{effect,jdbcType=TINYINT}, #{createdTime,jdbcType=TIMESTAMP}, #{modifiedTime,jdbcType=TIMESTAMP}, 
+      #{remark,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.gahui.ghmall.server.entity.GhOrderItem">
     insert into gh_order_item
@@ -39,8 +43,14 @@
       <if test="orderItemId != null">
         order_item_id,
       </if>
+      <if test="orderItemCode != null">
+        order_item_code,
+      </if>
       <if test="orderItemStatus != null">
         order_item_status,
+      </if>
+      <if test="orderId != null">
+        order_id,
       </if>
       <if test="goodsId != null">
         goods_id,
@@ -65,8 +75,14 @@
       <if test="orderItemId != null">
         #{orderItemId,jdbcType=INTEGER},
       </if>
+      <if test="orderItemCode != null">
+        #{orderItemCode,jdbcType=VARCHAR},
+      </if>
       <if test="orderItemStatus != null">
         #{orderItemStatus,jdbcType=TINYINT},
+      </if>
+      <if test="orderId != null">
+        #{orderId,jdbcType=INTEGER},
       </if>
       <if test="goodsId != null">
         #{goodsId,jdbcType=INTEGER},
@@ -91,8 +107,14 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.gahui.ghmall.server.entity.GhOrderItem">
     update gh_order_item
     <set>
+      <if test="orderItemCode != null">
+        order_item_code = #{orderItemCode,jdbcType=VARCHAR},
+      </if>
       <if test="orderItemStatus != null">
         order_item_status = #{orderItemStatus,jdbcType=TINYINT},
+      </if>
+      <if test="orderId != null">
+        order_id = #{orderId,jdbcType=INTEGER},
       </if>
       <if test="goodsId != null">
         goods_id = #{goodsId,jdbcType=INTEGER},
@@ -117,7 +139,9 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.gahui.ghmall.server.entity.GhOrderItem">
     update gh_order_item
-    set order_item_status = #{orderItemStatus,jdbcType=TINYINT},
+    set order_item_code = #{orderItemCode,jdbcType=VARCHAR},
+      order_item_status = #{orderItemStatus,jdbcType=TINYINT},
+      order_id = #{orderId,jdbcType=INTEGER},
       goods_id = #{goodsId,jdbcType=INTEGER},
       goods_num = #{goodsNum,jdbcType=INTEGER},
       effect = #{effect,jdbcType=TINYINT},

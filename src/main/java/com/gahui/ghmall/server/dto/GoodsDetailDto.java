@@ -6,13 +6,13 @@ import lombok.Setter;
 import java.util.List;
 
 /**
- * @description: 商品Dto
+ * @description: 商品详情Dto
  * @author: Gahui
  * @since: 2021/3/15
  **/
 @Getter
 @Setter
-public class GhGoodsDto {
+public class GoodsDetailDto {
     private Integer goodsId;
 
     private String goodsName;
@@ -27,7 +27,7 @@ public class GhGoodsDto {
 
     private Integer goodsSold;
 
-    private GhCategoryDto category;
+    private CategoryDto category;
 
-    private List<GhGoodsImgDto> imgList;
+    private List<GoodsImgDto> imgList;
 }

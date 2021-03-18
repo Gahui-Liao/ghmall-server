@@ -4,15 +4,15 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * @description: 分类Dto
+ * @description: 商品图片Dto
  * @author: Gahui
  * @since: 2021/3/15
  **/
 @Getter
 @Setter
-public class GhCategoryDto {
+public class GoodsImgDto {
 
-    private Integer categoryId;
+    private Integer goodsImgId;
 
-    private String categoryName;
+    private String goodsImgUrl;
 }

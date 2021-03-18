@@ -10,7 +10,7 @@ import lombok.Setter;
  **/
 @Getter
 @Setter
-public class GhSequenceDto {
+public class SequenceDto {
 
     private Integer seqId;
 
