@@ -1,6 +1,7 @@
 package com.gahui.ghmall.server.service.account.impl;
 
-import com.gahui.ghmall.server.cache.AccountCacheService;
+import com.gahui.ghmall.server.cache.SequenceCacheService;
+import com.gahui.ghmall.server.constant.CacheEnum;
 import com.gahui.ghmall.server.constant.ExceptionEnum;
 import com.gahui.ghmall.server.dao.GhAccountDao;
 import com.gahui.ghmall.server.dao.GhUserDao;
@@ -39,7 +40,7 @@ public class AccountServiceImpl implements AccountService {
     TokenService tokenService;
 
     @Resource
-    AccountCacheService accountCacheService;
+    SequenceCacheService sequenceCacheService;
 
     @Resource
     GhUserDao ghUserDao;
@@ -74,7 +75,7 @@ public class AccountServiceImpl implements AccountService {
     @Override
     public int register(GhAccountDto accountDto) {
         this.paramValidate(accountDto);
-        Integer accountId = accountCacheService.getAccountId();
+        Integer accountId = sequenceCacheService.getSeqIdByEnum(CacheEnum.ACCOUNT);
         accountDto.setAccountId(accountId);
         // 密码加密
         try {
@@ -86,7 +87,7 @@ public class AccountServiceImpl implements AccountService {
         }
         GhUserDto userDto = new GhUserDto();
         this.paramFill(userDto, accountDto);
-        // 简化处理，userId == accountId
+        // 简化处理，账户与用户，一一对应，即userId == accountId
         userDto.setUserId(accountId);
         userDto.setAccountId(accountId);
         accountDto.setUser(userDto);

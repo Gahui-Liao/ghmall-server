@@ -42,7 +42,7 @@ public class VisitAop {
             String ip = request.getRemoteAddr();
             visitCacheService.incrVisit(ip);
             if (visitCacheService.accessAuth(ip) != 1) {
-                throw new GhmallException(ExceptionEnum.AUTH);
+                throw new GhmallException(ExceptionEnum.AUTH.getCode(), "禁止访问！");
             }
         }
     }

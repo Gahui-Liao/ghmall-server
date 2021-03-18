@@ -1,5 +1,6 @@
 package com.gahui.ghmall.server.cache;
 
+import com.gahui.ghmall.server.constant.CacheEnum;
 import com.gahui.ghmall.server.dto.GhSequenceDto;
 
 /**
@@ -15,16 +16,28 @@ public interface SequenceCacheService {
      */
     String SEQ_CACHE = "s_cache";
 
-    /**
-     * 获取账号序列信息
-     * @return dto
-     */
-    GhSequenceDto getAccountSeqDto();
 
     /**
-     * 更新账号序列环迅信息
-     * @param seqDto 序列dto
-     * @return 1：成功，其他：失败
+     * 根据key获取序列信息
+     *
+     * @param seqKey 序列名
+     * @return dto
      */
-    int setAccountSeqDto(GhSequenceDto seqDto);
+    GhSequenceDto getSeqDtoByKey(String seqKey);
+
+    /**
+     * 根据key设置序列信息
+     *
+     * @param seqDto 序列信息
+     * @param seqKey key
+     * @return 1：成功，其他失败
+     */
+    int setSeqDtoByKey(GhSequenceDto seqDto, String seqKey);
+
+    /**
+     * 根据枚举获取对应的唯一标识
+     * @param cacheEnum 枚举
+     * @return int
+     */
+    Integer getSeqIdByEnum(CacheEnum cacheEnum);
 }
