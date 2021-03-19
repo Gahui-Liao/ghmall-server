@@ -62,5 +62,5 @@ public interface GoodsDao extends GhGoodsMapper {
      * @return 1：成功，其他：失败
      * --这里需要修改一下查询mysql连接的url，不然会一直返回为1，详见：https://www.jianshu.com/p/80270b93082a
      */
-    int updateGoodsStockByIdAndNum(@Param("goodsId") Integer goodsId, @Param("goodsStock") Integer goodsStock, @Param("reduceStock") Integer reduceStock);
+    int updateGoodsStockByIdAndNum(@Param("goodsId") Integer goodsId, @Param("goodsStock") Integer goodsStock, @Param("reduceNum") Integer reduceNum);
 }

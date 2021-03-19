@@ -48,10 +48,11 @@ public interface GoodsService {
 
     /**
      * 更新对应的商品的库存
-     * @param goodsId 商品标识
+     *
+     * @param goodsId    商品标识
      * @param goodsStock 商品库存
-     * @param reduceStock 减少后库存
+     * @param reduceNum  减少后库存
      * @return 1：成功，其他：失败
      */
-    int updateGoodsStockByIdAndNum(Integer goodsId, Integer goodsStock, Integer reduceStock);
+    int updateGoodsStockByIdAndNum(Integer goodsId, Integer goodsStock, Integer reduceNum);
 }

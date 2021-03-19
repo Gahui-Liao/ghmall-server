@@ -81,7 +81,7 @@ public class OrderServiceImpl implements OrderService {
         }
         Integer orderId = sequenceCacheService.getSeqIdByEnum(CacheEnum.ORDER);
         String orderCode = this.getOrderCode(orderId);
-        Long orderAmount = this.getOrderAmount(acceptOrderVo.getOrderItemList());
+        Long orderAmount = this.getOrderAmount(acceptOrderVo);
         this.insertOrder(acceptOrderVo.getAccountId(), orderId, orderCode, orderAmount);
         this.insertOrderItem(orderId, orderCode, acceptOrderVo);
         return 1;
@@ -148,10 +148,11 @@ public class OrderServiceImpl implements OrderService {
     /**
      * 获取订单交易额
      *
-     * @param orderItemVoList 前端入参订单项
+     * @param acceptOrderVo 前端入参
      * @return long
      */
-    private Long getOrderAmount(List<OrderItemVo> orderItemVoList) {
+    private Long getOrderAmount(AcceptOrderVo acceptOrderVo) {
+        List<OrderItemVo> orderItemVoList = acceptOrderVo.getOrderItemList();
         if (orderItemVoList == null || orderItemVoList.size() <= 0) {
             return null;
         }
@@ -180,28 +181,35 @@ public class OrderServiceImpl implements OrderService {
             }
             amount += goodsDto.getGoodsPrice() * idNumMap.get(goodsDto.getGoodsId());
         }
-        this.getNewOrderItemVo(idNumMap, orderItemVoList);
+        // 如果前端入参非法，更改入参
+        this.getNewOrderItemVo(idNumMap, acceptOrderVo);
         return amount;
     }
 
     /**
-     * 重新生成前端测入参
+     * 如果前端入参需要做修改，则更新参数
      *
-     * @param idNumMap        goodsId&goodsNum的map
-     * @param orderItemVoList 原始的入参
+     * @param idNumMap      goodsId&goodsNum的map
+     * @param acceptOrderVo 前端入参
      */
-    private void getNewOrderItemVo(Map<Integer, Integer> idNumMap, List<OrderItemVo> orderItemVoList) {
-        orderItemVoList = new ArrayList<>();
+    private void getNewOrderItemVo(Map<Integer, Integer> idNumMap, AcceptOrderVo acceptOrderVo) {
+        if (idNumMap == null || acceptOrderVo == null || acceptOrderVo.getOrderItemList() == null) {
+            return;
+        }
+        if (idNumMap.size() == acceptOrderVo.getOrderItemList().size()) {
+            return;
+        }
+        List<OrderItemVo> orderItemVoList = new ArrayList<>();
         for (Integer goodsId : idNumMap.keySet()) {
             OrderItemVo itemVo = new OrderItemVo();
             itemVo.setGoodsId(goodsId);
             itemVo.setGoodsNum(idNumMap.get(goodsId));
             orderItemVoList.add(itemVo);
         }
+        acceptOrderVo.setOrderItemList(orderItemVoList);
     }
 
     private int updateGoodsStock(Integer goodsId, Integer goodsStock, Integer reduceNum) {
-        Integer reduceStock = goodsStock - reduceNum;
-        return goodsService.updateGoodsStockByIdAndNum(goodsId, goodsStock, reduceStock);
+        return goodsService.updateGoodsStockByIdAndNum(goodsId, goodsStock, reduceNum);
     }
 }

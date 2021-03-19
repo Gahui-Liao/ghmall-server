@@ -46,8 +46,8 @@ public class GoodsServiceImpl implements GoodsService {
     }
 
     @Override
-    public int updateGoodsStockByIdAndNum(Integer goodsId, Integer goodsStock, Integer reduceStock) {
-        return goodsDao.updateGoodsStockByIdAndNum(goodsId, goodsStock, reduceStock);
+    public int updateGoodsStockByIdAndNum(Integer goodsId, Integer goodsStock, Integer reduceNum) {
+        return goodsDao.updateGoodsStockByIdAndNum(goodsId, goodsStock, reduceNum);
     }
 
 

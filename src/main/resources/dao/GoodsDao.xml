@@ -26,7 +26,8 @@
 
     <update id="updateGoodsStockByIdAndNum">
         UPDATE gh_goods
-        SET goods_stock = #{reduceStock}
+        SET goods_stock = goods_stock - #{reduceNum},
+            goods_sold  = goods_sold + #{reduceNum}
         WHERE goods_id = #{goodsId}
           AND goods_stock = #{goodsStock}
           AND effect = 1
