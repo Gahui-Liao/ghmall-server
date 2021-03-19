@@ -9,6 +9,7 @@ import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * @description: 商品业务逻辑具体实现类
@@ -38,4 +39,16 @@ public class GoodsServiceImpl implements GoodsService {
     public GoodsDto getGoodsBasicById(Integer goodsId) {
         return goodsDao.getGoodsById(goodsId);
     }
+
+    @Override
+    public List<GoodsDto> listGoodsByIdList(List<Integer> goodsIdList) {
+        return goodsDao.listGoodsByIdList(goodsIdList);
+    }
+
+    @Override
+    public int updateGoodsStockByIdAndNum(Integer goodsId, Integer goodsStock, Integer reduceStock) {
+        return goodsDao.updateGoodsStockByIdAndNum(goodsId, goodsStock, reduceStock);
+    }
+
+
 }

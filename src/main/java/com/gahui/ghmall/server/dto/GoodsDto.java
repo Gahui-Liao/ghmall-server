@@ -21,4 +21,8 @@ public class GoodsDto {
     private String goodsInfo;
 
     private Integer goodsPrice;
+
+    private Integer goodsStock;
+
+    private Integer goodsSold;
 }

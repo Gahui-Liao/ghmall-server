@@ -5,9 +5,9 @@ import com.gahui.ghmall.server.constant.CacheEnum;
 import com.gahui.ghmall.server.constant.ExceptionEnum;
 import com.gahui.ghmall.server.constant.OrderItemStatusEnum;
 import com.gahui.ghmall.server.constant.OrderStatusEnum;
-import com.gahui.ghmall.server.dao.GoodsDao;
 import com.gahui.ghmall.server.dao.OrderDao;
 import com.gahui.ghmall.server.dao.OrderItemDao;
+import com.gahui.ghmall.server.dto.GoodsDto;
 import com.gahui.ghmall.server.dto.OrderDetailDto;
 import com.gahui.ghmall.server.dto.OrderDto;
 import com.gahui.ghmall.server.entity.GhOrder;
@@ -25,9 +25,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  * @description: 订单相关业务实现类
@@ -50,9 +48,6 @@ public class OrderServiceImpl implements OrderService {
 
     @Resource
     GoodsService goodsService;
-
-    @Resource
-    GoodsDao goodsDao;
 
     @Override
     public PageInfo listOrderByAccountId(Integer accountId, Integer pageNum, Integer pageSize) {
@@ -86,9 +81,10 @@ public class OrderServiceImpl implements OrderService {
         }
         Integer orderId = sequenceCacheService.getSeqIdByEnum(CacheEnum.ORDER);
         String orderCode = this.getOrderCode(orderId);
-        Long orderAmount = this.getOrderAmount(acceptOrderVo);
-        return this.insertOrder(acceptOrderVo.getAccountId(), orderId, orderCode, orderAmount) &
-                this.insertOrderItem(orderId, orderCode, acceptOrderVo);
+        Long orderAmount = this.getOrderAmount(acceptOrderVo.getOrderItemList());
+        this.insertOrder(acceptOrderVo.getAccountId(), orderId, orderCode, orderAmount);
+        this.insertOrderItem(orderId, orderCode, acceptOrderVo);
+        return 1;
     }
 
     /**
@@ -101,21 +97,6 @@ public class OrderServiceImpl implements OrderService {
         Date date = new Date();
         SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
         return PREFIX + format.format(date) + String.format("%06d", orderId);
-    }
-
-    /**
-     * 获取价格，价格不应该用前端传过来的
-     *
-     * @param acceptOrderVo 前端入参
-     * @return long
-     */
-    private long getOrderAmount(AcceptOrderVo acceptOrderVo) {
-        long ans = 0;
-        for (OrderItemVo orderItemVo : acceptOrderVo.getOrderItemList()) {
-            this.validateGoods(orderItemVo.getGoodsId());
-            ans += goodsService.getGoodsBasicById(orderItemVo.getGoodsId()).getGoodsPrice() * orderItemVo.getGoodsNum();
-        }
-        return ans;
     }
 
     /**
@@ -165,15 +146,62 @@ public class OrderServiceImpl implements OrderService {
     }
 
     /**
-     * 校验商品是否存在
+     * 获取订单交易额
      *
-     * @param goodsId 商品标识
-     * @return int
+     * @param orderItemVoList 前端入参订单项
+     * @return long
      */
-    private Integer validateGoods(Integer goodsId) {
-        if (goodsId == null || goodsDao.validateGoodsById(goodsId) <= 0) {
-            throw new GhmallException(ExceptionEnum.BIZ.getCode(), "商品不存在！");
+    private Long getOrderAmount(List<OrderItemVo> orderItemVoList) {
+        if (orderItemVoList == null || orderItemVoList.size() <= 0) {
+            return null;
         }
-        return goodsId;
+        Map<Integer, Integer> idNumMap = new HashMap<>(16);
+        for (OrderItemVo orderItemVo : orderItemVoList) {
+            Integer goodsId = orderItemVo.getGoodsId();
+            Integer goodsNum = orderItemVo.getGoodsNum();
+            if (idNumMap.get(goodsId) != null) {
+                idNumMap.put(goodsId, idNumMap.get(goodsId) + goodsNum);
+            } else {
+                idNumMap.put(goodsId, goodsNum);
+            }
+        }
+        List<GoodsDto> goodsDtoList = goodsService.listGoodsByIdList(new ArrayList<>(idNumMap.keySet()));
+        long amount = 0L;
+        for (GoodsDto goodsDto : goodsDtoList) {
+            if (idNumMap.get(goodsDto.getGoodsId()) > goodsDto.getGoodsStock()) {
+                throw new GhmallException(ExceptionEnum.BIZ.getCode(), "商品库存不足！");
+            }
+            if (!idNumMap.keySet().contains(goodsDto.getGoodsId())) {
+                idNumMap.remove(goodsDto.getGoodsId());
+            }
+            // 减库存，价格累加
+            if (this.updateGoodsStock(goodsDto.getGoodsId(), goodsDto.getGoodsStock(), idNumMap.get(goodsDto.getGoodsId())) != 1) {
+                throw new GhmallException(ExceptionEnum.BIZ.getCode(), "商品库存不足！");
+            }
+            amount += goodsDto.getGoodsPrice() * idNumMap.get(goodsDto.getGoodsId());
+        }
+        this.getNewOrderItemVo(idNumMap, orderItemVoList);
+        return amount;
+    }
+
+    /**
+     * 重新生成前端测入参
+     *
+     * @param idNumMap        goodsId&goodsNum的map
+     * @param orderItemVoList 原始的入参
+     */
+    private void getNewOrderItemVo(Map<Integer, Integer> idNumMap, List<OrderItemVo> orderItemVoList) {
+        orderItemVoList = new ArrayList<>();
+        for (Integer goodsId : idNumMap.keySet()) {
+            OrderItemVo itemVo = new OrderItemVo();
+            itemVo.setGoodsId(goodsId);
+            itemVo.setGoodsNum(idNumMap.get(goodsId));
+            orderItemVoList.add(itemVo);
+        }
+    }
+
+    private int updateGoodsStock(Integer goodsId, Integer goodsStock, Integer reduceNum) {
+        Integer reduceStock = goodsStock - reduceNum;
+        return goodsService.updateGoodsStockByIdAndNum(goodsId, goodsStock, reduceStock);
     }
 }

@@ -38,10 +38,29 @@ public interface GoodsDao extends GhGoodsMapper {
     int validateGoodsById(@Param("goodsId") Integer goodsId);
 
     /**
-     * 获取商品进本信息
+     * 获取商品基本信息
      *
      * @param goodsId 商品标识
      * @return dto
      */
     GoodsDto getGoodsById(@Param("goodsId") Integer goodsId);
+
+    /**
+     * 根据多个商品标识查询商品信息
+     *
+     * @param goodsIdList 多个商品标识
+     * @return list
+     */
+    List<GoodsDto> listGoodsByIdList(@Param("goodsIdList") List<Integer> goodsIdList);
+
+    /**
+     * 使用乐观锁减库存
+     *
+     * @param goodsId     商品标识
+     * @param goodsStock  商品库存
+     * @param reduceStock 减少数目
+     * @return 1：成功，其他：失败
+     * --这里需要修改一下查询mysql连接的url，不然会一直返回为1，详见：https://www.jianshu.com/p/80270b93082a
+     */
+    int updateGoodsStockByIdAndNum(@Param("goodsId") Integer goodsId, @Param("goodsStock") Integer goodsStock, @Param("reduceStock") Integer reduceStock);
 }

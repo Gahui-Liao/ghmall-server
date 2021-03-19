@@ -24,6 +24,14 @@
         <result column="goods_img_url" jdbcType="VARCHAR" property="goodsImgUrl"/>
     </resultMap>
 
+    <update id="updateGoodsStockByIdAndNum">
+        UPDATE gh_goods
+        SET goods_stock = #{reduceStock}
+        WHERE goods_id = #{goodsId}
+          AND goods_stock = #{goodsStock}
+          AND effect = 1
+    </update>
+
     <select id="listRecommendGoods" resultMap="goodsDtoMap">
         SELECT gg.goods_id,
                gg.goods_name,
@@ -64,9 +72,26 @@
                gg.goods_name,
                gg.goods_icon,
                gg.goods_info,
-               gg.goods_price
+               gg.goods_price,
+               gg.goods_stock,
+               gg.goods_sold
         FROM gh_goods gg
         WHERE gg.goods_id = #{goodsId}
           AND gg.effect = 1
+    </select>
+    <select id="listGoodsByIdList" resultType="com.gahui.ghmall.server.dto.GoodsDto">
+        SELECT gg.goods_id,
+        gg.goods_name,
+        gg.goods_icon,
+        gg.goods_info,
+        gg.goods_price,
+        gg.goods_stock,
+        gg.goods_sold
+        FROM gh_goods gg
+        WHERE gg.goods_id IN(
+        <foreach collection="goodsIdList" item="item" separator=",">
+            #{item}
+        </foreach>)
+        AND gg.effect = 1
     </select>
 </mapper>

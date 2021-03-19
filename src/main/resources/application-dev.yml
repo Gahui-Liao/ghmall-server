@@ -7,7 +7,7 @@ server:
 # 数据库连接配置
 spring:
     datasource:
-        url: jdbc:mysql://127.0.0.1:3306/ghmall?useUnicode=true&characterEncoding=utf8&useSSL=false
+        url: jdbc:mysql://127.0.0.1:3306/ghmall?useUnicode=true&characterEncoding=utf8&useSSL=false&useAffectedRows=true
         username: root
         password: liaojiaxi
         driver-class-name: com.mysql.jdbc.Driver
