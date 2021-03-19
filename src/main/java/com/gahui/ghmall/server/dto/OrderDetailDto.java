@@ -14,15 +14,15 @@ import java.util.List;
 @Setter
 public class OrderDetailDto {
 
-    private Integer goodsId;
+    private Integer orderId;
 
-    private String goodsName;
+    private String orderCode;
 
-    private String goodsIcon;
+    private Byte orderStatus;
 
-    private String goodsInfo;
+    private Long orderAmount;
 
-    private Integer goodsPrice;
+    private Integer accountId;
 
     private List<OrderItemDto> orderItemList;
 }

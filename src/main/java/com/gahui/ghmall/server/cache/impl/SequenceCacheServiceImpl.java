@@ -44,9 +44,9 @@ public class SequenceCacheServiceImpl implements SequenceCacheService {
         if (seqDto == null) {
             return this.getInitId(cacheEnum);
         }
-        Integer accountId = (Integer) ghCacheHelper.get(SEQ_CACHE, cacheEnum.getIdPrefix()).getObjectValue();
+        Integer seqId = (Integer) ghCacheHelper.get(SEQ_CACHE, cacheEnum.getIdPrefix()).getObjectValue();
         // 如果大于等于序列段最大值，则重新获取序列段
-        if (accountId >= seqDto.getSeqUsed() + seqDto.getSeqStep()) {
+        if (seqId >= seqDto.getSeqUsed() + seqDto.getSeqStep()) {
             return this.getInitId(cacheEnum);
         }
         if (ghCacheHelper.incr(SEQ_CACHE, cacheEnum.getIdPrefix()) == 1) {

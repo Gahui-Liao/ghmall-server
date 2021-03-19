@@ -20,9 +20,7 @@ public class OrderItemDto {
 
     private Integer orderId;
 
-    private Integer goodsId;
-
     private Integer goodsNum;
 
-    private GoodsDto goodsDto;
+    private GoodsDto goods;
 }

@@ -2,6 +2,7 @@ package com.gahui.ghmall.server.service.goods.impl;
 
 import com.gahui.ghmall.server.dao.GoodsDao;
 import com.gahui.ghmall.server.dto.GoodsDetailDto;
+import com.gahui.ghmall.server.dto.GoodsDto;
 import com.gahui.ghmall.server.service.goods.GoodsService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -21,7 +22,7 @@ public class GoodsServiceImpl implements GoodsService {
     GoodsDao goodsDao;
 
     @Override
-    public GoodsDetailDto getGoodsById(Integer goodsId) {
+    public GoodsDetailDto getGoodsDetailById(Integer goodsId) {
         return goodsDao.getGoodsDetailById(goodsId);
     }
 
@@ -31,5 +32,10 @@ public class GoodsServiceImpl implements GoodsService {
         pageSize = pageSize == null ? 10 : pageSize;
         PageHelper.startPage(pageNum, pageSize);
         return new PageInfo<>(goodsDao.listRecommendGoods());
+    }
+
+    @Override
+    public GoodsDto getGoodsBasicById(Integer goodsId) {
+        return goodsDao.getGoodsById(goodsId);
     }
 }

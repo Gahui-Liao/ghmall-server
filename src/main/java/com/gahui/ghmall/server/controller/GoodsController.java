@@ -25,7 +25,7 @@ public class GoodsController {
     @GhAuth
     @GetMapping("/detail/{goodsId}")
     public ResponseVo getGoodsById(@PathVariable("goodsId") Integer goodsId) {
-        return ResponseVo.success(goodsService.getGoodsById(goodsId));
+        return ResponseVo.success(goodsService.getGoodsDetailById(goodsId));
     }
 
     @GetMapping("/recommend/{pageNum}/{pageSize}")

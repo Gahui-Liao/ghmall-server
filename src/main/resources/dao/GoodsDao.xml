@@ -52,7 +52,21 @@
                  LEFT JOIN gh_goods_img ggi ON ggi.goods_id = gg.goods_id
         WHERE gg.goods_id = #{goodsId}
           AND gg.effect = 1
-          AND gc.effect = 1
-          AND ggi.effect = 1
+    </select>
+    <select id="validateGoodsById" resultType="java.lang.Integer">
+        SELECT count(0)
+        FROM gh_goods gg
+        WHERE gg.goods_id = #{goodsId}
+          AND gg.effect = 1
+    </select>
+    <select id="getGoodsById" resultType="com.gahui.ghmall.server.dto.GoodsDto">
+        SELECT gg.goods_id,
+               gg.goods_name,
+               gg.goods_icon,
+               gg.goods_info,
+               gg.goods_price
+        FROM gh_goods gg
+        WHERE gg.goods_id = #{goodsId}
+          AND gg.effect = 1
     </select>
 </mapper>

@@ -1,6 +1,7 @@
 package com.gahui.ghmall.server.service.goods;
 
 import com.gahui.ghmall.server.dto.GoodsDetailDto;
+import com.gahui.ghmall.server.dto.GoodsDto;
 import com.github.pagehelper.PageInfo;
 
 /**
@@ -15,7 +16,7 @@ public interface GoodsService {
      * @param goodsId 商品标识
      * @return dto
      */
-    GoodsDetailDto getGoodsById(Integer goodsId);
+    GoodsDetailDto getGoodsDetailById(Integer goodsId);
 
     /**
      * 分页查询推荐商品
@@ -25,4 +26,11 @@ public interface GoodsService {
      * @return page
      */
     PageInfo listRecommendGoods(Integer pageNum, Integer pageSize);
+
+    /**
+     * 根据商品标识获取商品基础信息
+     * @param goodsId 商品标识
+     * @return dto
+     */
+    GoodsDto getGoodsBasicById(Integer goodsId);
 }

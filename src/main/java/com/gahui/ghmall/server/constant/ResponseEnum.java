@@ -1,10 +1,15 @@
 package com.gahui.ghmall.server.constant;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
 /**
  * @description: 响应枚举类
  * @author: Gahui
  * @since: 2021/2/4
  **/
+@Getter
+@AllArgsConstructor
 public enum ResponseEnum {
     /**
      * 响应成功
@@ -31,17 +36,4 @@ public enum ResponseEnum {
      * 响应信息
      */
     private String message;
-
-    ResponseEnum(int code, String message) {
-        this.code = code;
-        this.message = message;
-    }
-
-    public int getCode() {
-        return code;
-    }
-
-    public String getMessage() {
-        return message;
-    }
 }

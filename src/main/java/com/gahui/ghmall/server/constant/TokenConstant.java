@@ -1,7 +1,7 @@
 package com.gahui.ghmall.server.constant;
 
 /**
- * @description:
+ * @description: token相关常量
  * @author: Gahui
  * @since: 2021/3/12
  **/

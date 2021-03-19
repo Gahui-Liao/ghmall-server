@@ -28,4 +28,20 @@ public interface GoodsDao extends GhGoodsMapper {
      * @return page
      */
     List<GoodsDto> listRecommendGoods();
+
+    /**
+     * 校验商品是否存在
+     *
+     * @param goodsId 商品标识
+     * @return int
+     */
+    int validateGoodsById(@Param("goodsId") Integer goodsId);
+
+    /**
+     * 获取商品进本信息
+     *
+     * @param goodsId 商品标识
+     * @return dto
+     */
+    GoodsDto getGoodsById(@Param("goodsId") Integer goodsId);
 }

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gahui.ghmall.server.dao.OrderItemDao">
+
+    <resultMap id="orderItemDtoMap" type="com.gahui.ghmall.server.dto.OrderItemDto">
+        <id column="order_item_id" jdbcType="INTEGER" property="orderItemId"/>
+        <result column="order_item_code" jdbcType="VARCHAR" property="orderItemCode"/>
+        <result column="order_item_status" jdbcType="TINYINT" property="orderItemStatus"/>
+        <result column="order_id" jdbcType="INTEGER" property="orderId"/>
+        <result column="goods_num" jdbcType="INTEGER" property="goodsNum"/>
+        <association property="goods" resultMap="goodsDtoMap"/>
+    </resultMap>
+
+    <resultMap id="goodsDtoMap" type="com.gahui.ghmall.server.dto.GoodsDto">
+        <id column="goods_id" jdbcType="INTEGER" property="goodsId"/>
+        <result column="goods_name" jdbcType="VARCHAR" property="goodsName"/>
+        <result column="goods_icon" jdbcType="VARCHAR" property="goodsIcon"/>
+        <result column="goods_info" jdbcType="VARCHAR" property="goodsInfo"/>
+        <result column="goods_price" jdbcType="INTEGER" property="goodsPrice"/>
+    </resultMap>
+    <insert id="batchInsertOrderItem" parameterType="java.util.List">
+        INSERT INTO gh_order_item (
+        order_item_id,
+        order_item_code,
+        order_item_status,
+        order_id,
+        goods_id,
+        goods_num
+        )
+        VALUES
+        <foreach collection="orderItemList" item="item" separator=",">
+            (#{item.orderItemId},#{item.orderItemCode},#{item.orderItemStatus},#{item.orderId},#{item.goodsId},#{item.goodsNum})
+        </foreach>
+    </insert>
+
+    <select id="listOrderItemByOrderId" resultType="com.gahui.ghmall.server.dto.OrderItemDto">
+        SELECT goi.order_item_id,
+               goi.order_item_code,
+               goi.order_item_status,
+               goi.order_id,
+               goi.goods_num,
+               gg.goods_id,
+               gg.goods_name,
+               gg.goods_icon,
+               gg.goods_name,
+               gg.goods_info,
+               gg.goods_price
+        FROM gh_order_item goi
+                 LEFT JOIN gh_goods gg ON goi.goods_id = gg.goods_id
+        WHERE goi.order_id = #{orderId}
+          AND goi.effect = 1
+          AND gg.effect = 1
+    </select>
+</mapper>

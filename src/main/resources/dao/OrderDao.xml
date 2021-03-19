@@ -32,4 +32,14 @@
           AND goi.effect = 1
           AND gg.effect = 1
     </select>
+    <select id="getOrderById" resultType="com.gahui.ghmall.server.dto.OrderDto">
+        SELECT go.orde_id,
+               go.order_code,
+               go.order_status,
+               go.order_amount,
+               go.account_id
+        FROM gh_order go
+        WHERE go.order_id = #{orderId}
+          AND go.effect = 1
+    </select>
 </mapper>
