@@ -179,6 +179,9 @@ public class OrderServiceImpl implements OrderService {
             if (this.updateGoodsStock(goodsDto.getGoodsId(), goodsDto.getGoodsStock(), idNumMap.get(goodsDto.getGoodsId())) != 1) {
                 throw new GhmallException(ExceptionEnum.BIZ.getCode(), "商品库存不足！");
             }
+            if (goodsDto.getGoodsPrice() == null) {
+                throw new GhmallException(ExceptionEnum.BIZ.getCode(), "商品价格为空！");
+            }
             amount += goodsDto.getGoodsPrice() * idNumMap.get(goodsDto.getGoodsId());
         }
         // 如果前端入参非法，更改入参
