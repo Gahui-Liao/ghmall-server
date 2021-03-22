@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gahui.ghmall.server.dao.CartItemDao">
+
+    <resultMap id="cartItemDtoMap" type="com.gahui.ghmall.server.dto.CartItemDto">
+        <id column="cart_item_id" jdbcType="INTEGER" property="cartItemId"/>
+        <result column="cart_id" jdbcType="INTEGER" property="cartId"/>
+        <result column="goods_num" jdbcType="INTEGER" property="goodsNum"/>
+        <association property="goods" resultMap="goodsDtoMap"/>
+    </resultMap>
+
+    <resultMap id="goodsDtoMap" type="com.gahui.ghmall.server.dto.GoodsDto">
+        <id column="goods_id" jdbcType="INTEGER" property="goodsId"/>
+        <result column="goods_name" jdbcType="VARCHAR" property="goodsName"/>
+        <result column="goods_icon" jdbcType="VARCHAR" property="goodsIcon"/>
+        <result column="goods_info" jdbcType="VARCHAR" property="goodsInfo"/>
+        <result column="goods_price" jdbcType="INTEGER" property="goodsPrice"/>
+    </resultMap>
+    <update id="increaseCartItem">
+        UPDATE gh_cart_item
+        SET goods_num = goods_num + #{goodsNum}
+        WHERE
+            cart_item_id = #{cartItemId}
+          AND effect = 1
+    </update>
+    <update id="decreaseCartItem">
+        UPDATE gh_cart_item
+        SET goods_num = goods_num - #{goodsNum}
+        WHERE cart_item_id = #{cartItemId}
+          AND effect = 1
+    </update>
+
+    <select id="listCartItemByAccountId" resultMap="cartItemDtoMap">
+        SELECT gci.cart_item_id,
+               gci.cart_id,
+               gci.goods_num,
+               gg.goods_id,
+               gg.goods_name,
+               gg.goods_icon,
+               gg.goods_info,
+               gg.goods_price
+        FROM gh_cart gc
+                 LEFT JOIN gh_cart_item gci ON gc.cart_id = gci.cart_id
+                 LEFT JOIN gh_goods gg ON gci.goods_id = gg.goods_id
+        WHERE gc.account_id = #{accountId}
+          AND gci.effect = 1
+          AND gg.effect = 1
+          AND gc.effect = 1
+    </select>
+    <select id="getCartItemByCartIdAndGoodsId" resultType="com.gahui.ghmall.server.dto.CartItemDto">
+        SELECT gci.cart_item_id,
+               gci.cart_id,
+               gci.goods_id,
+               gci.goods_num
+        FROM gh_cart gc
+                 LEFT JOIN gh_cart_item gci ON gc.cart_id = gci.cart_id
+        WHERE gci.goods_id = #{goodsId}
+          AND gci.cart_id = #{cartId}
+          AND gc.effect = 1
+          AND gci.effect = 1
+    </select>
+
+</mapper>

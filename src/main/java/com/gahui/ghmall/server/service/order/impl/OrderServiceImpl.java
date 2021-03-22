@@ -51,6 +51,9 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public PageInfo listOrderByAccountId(Integer accountId, Integer pageNum, Integer pageSize) {
+        if(accountId == null){
+            return null;
+        }
         pageNum = pageNum == null ? 1 : pageNum;
         pageSize = pageSize == null ? 10 : pageSize;
         PageHelper.startPage(pageNum, pageSize);

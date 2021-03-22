@@ -1,6 +1,5 @@
 package com.gahui.ghmall.server.dao;
 
-import com.gahui.ghmall.server.dto.OrderDetailDto;
 import com.gahui.ghmall.server.dto.OrderDto;
 import com.gahui.ghmall.server.mapper.GhOrderMapper;
 import org.apache.ibatis.annotations.Param;
@@ -24,6 +23,7 @@ public interface OrderDao extends GhOrderMapper {
 
     /**
      * 根据订单标识查询订单基本信息
+     *
      * @param orderId 订单标识
      * @return dto
      */

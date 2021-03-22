@@ -33,7 +33,7 @@
           AND effect = 1
     </update>
 
-    <select id="listRecommendGoods" resultMap="goodsDtoMap">
+    <select id="listRecommendGoods" resultType="com.gahui.ghmall.server.dto.GoodsDto">
         SELECT gg.goods_id,
                gg.goods_name,
                gg.goods_icon,

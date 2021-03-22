@@ -33,7 +33,7 @@
         </foreach>
     </insert>
 
-    <select id="listOrderItemByOrderId" resultType="com.gahui.ghmall.server.dto.OrderItemDto">
+    <select id="listOrderItemByOrderId" resultMap="orderItemDtoMap">
         SELECT goi.order_item_id,
                goi.order_item_code,
                goi.order_item_status,

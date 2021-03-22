@@ -16,7 +16,9 @@ public enum CacheEnum {
      */
     ACCOUNT("accountSeq#", "gh_account", "account_id", "accoutId#"),
     ORDER("orderSeq#", "gh_order", "order_id", "orderId"),
-    ORDER_ITEM("orderItemSeq#", "gh_order_item", "order_item_id", "orderItemId#");
+    ORDER_ITEM("orderItemSeq#", "gh_order_item", "order_item_id", "orderItemId#"),
+    CART("cartSeq#", "gh_cart", "cart_id", "cartId#"),
+    CART_ITEM("cartItemSeq#", "gh_cart_item", "cart_item_id", "cartItemId#");
 
     private String seqPrefix;
 

@@ -58,7 +58,7 @@ public interface GoodsDao extends GhGoodsMapper {
      *
      * @param goodsId     商品标识
      * @param goodsStock  商品库存
-     * @param reduceStock 减少数目
+     * @param reduceNum 减少数目
      * @return 1：成功，其他：失败
      * --这里需要修改一下查询mysql连接的url，不然会一直返回为1，详见：https://www.jianshu.com/p/80270b93082a
      */
