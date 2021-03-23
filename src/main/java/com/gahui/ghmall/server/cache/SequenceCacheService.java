@@ -36,6 +36,7 @@ public interface SequenceCacheService {
 
     /**
      * 根据枚举获取对应的唯一标识
+     *
      * @param cacheEnum 枚举
      * @return int
      */

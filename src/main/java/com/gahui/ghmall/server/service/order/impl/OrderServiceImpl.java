@@ -5,6 +5,7 @@ import com.gahui.ghmall.server.constant.CacheEnum;
 import com.gahui.ghmall.server.constant.ExceptionEnum;
 import com.gahui.ghmall.server.constant.OrderItemStatusEnum;
 import com.gahui.ghmall.server.constant.OrderStatusEnum;
+import com.gahui.ghmall.server.dao.CartItemDao;
 import com.gahui.ghmall.server.dao.OrderDao;
 import com.gahui.ghmall.server.dao.OrderItemDao;
 import com.gahui.ghmall.server.dto.GoodsDto;
@@ -49,9 +50,12 @@ public class OrderServiceImpl implements OrderService {
     @Resource
     GoodsService goodsService;
 
+    @Resource
+    CartItemDao cartItemDao;
+
     @Override
     public PageInfo listOrderByAccountId(Integer accountId, Integer pageNum, Integer pageSize) {
-        if(accountId == null){
+        if (accountId == null) {
             return null;
         }
         pageNum = pageNum == null ? 1 : pageNum;
@@ -78,16 +82,35 @@ public class OrderServiceImpl implements OrderService {
      */
     @Transactional(rollbackFor = Exception.class)
     @Override
-    public int accept(AcceptOrderVo acceptOrderVo) {
+    public String accept(AcceptOrderVo acceptOrderVo) {
         if (acceptOrderVo == null) {
-            return 0;
+            return null;
         }
         Integer orderId = sequenceCacheService.getSeqIdByEnum(CacheEnum.ORDER);
         String orderCode = this.getOrderCode(orderId);
         Long orderAmount = this.getOrderAmount(acceptOrderVo);
         this.insertOrder(acceptOrderVo.getAccountId(), orderId, orderCode, orderAmount);
         this.insertOrderItem(orderId, orderCode, acceptOrderVo);
-        return 1;
+        return orderCode;
+    }
+
+    /**
+     * 事务控制
+     */
+    @Transactional(rollbackFor = Exception.class)
+    @Override
+    public String acceptCart(AcceptOrderVo acceptOrderVo) {
+        if (acceptOrderVo == null) {
+            return null;
+        }
+        Set<Integer> goodsIdSet = new HashSet<>(16);
+        for (OrderItemVo orderItemVo : acceptOrderVo.getOrderItemList()) {
+            Integer goodsId = orderItemVo.getGoodsId();
+            goodsIdSet.add(goodsId);
+        }
+        Integer accountId = acceptOrderVo.getAccountId();
+        cartItemDao.batchDeleteCartItem(accountId, new ArrayList<>(goodsIdSet));
+        return this.accept(acceptOrderVo);
     }
 
     /**

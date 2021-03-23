@@ -19,8 +19,7 @@
     <update id="increaseCartItem">
         UPDATE gh_cart_item
         SET goods_num = goods_num + #{goodsNum}
-        WHERE
-            cart_item_id = #{cartItemId}
+        WHERE cart_item_id = #{cartItemId}
           AND effect = 1
     </update>
     <update id="decreaseCartItem">
@@ -29,6 +28,21 @@
         WHERE cart_item_id = #{cartItemId}
           AND effect = 1
     </update>
+    <delete id="batchDeleteCartItem">
+        DELETE
+        FROM gh_cart_item
+        WHERE cart_id = (
+        SELECT gc.cart_id
+        FROM gh_cart gc
+        WHERE gc.account_id = #{accountId}
+        AND gc.effect = 1
+        LIMIT 1
+        )
+        AND goods_id IN(
+        <foreach collection="goodsIdList" item="item" separator=",">
+            #{item}
+        </foreach>)
+    </delete>
 
     <select id="listCartItemByAccountId" resultMap="cartItemDtoMap">
         SELECT gci.cart_item_id,

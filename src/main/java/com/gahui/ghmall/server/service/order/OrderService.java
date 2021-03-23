@@ -33,7 +33,15 @@ public interface OrderService {
      * 生成订单
      *
      * @param acceptOrderVo 前端传入订单参数
-     * @return 1：成功，其他：失败
+     * @return 订单号
      */
-    int accept(AcceptOrderVo acceptOrderVo);
+    String accept(AcceptOrderVo acceptOrderVo);
+
+    /**
+     * 购物车结算
+     *
+     * @param acceptOrderVo 前端传入订单参数
+     * @return 订单号
+     */
+    String acceptCart(AcceptOrderVo acceptOrderVo);
 }

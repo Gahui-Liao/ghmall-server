@@ -33,9 +33,11 @@ public class OrderController {
 
     @PostMapping("/accept")
     public ResponseVo accept(@RequestBody AcceptOrderVo acceptOrderVo) {
-        if (orderService.accept(acceptOrderVo) == 1) {
-            return ResponseVo.success();
-        }
-        return ResponseVo.fail();
+        return ResponseVo.success(orderService.accept(acceptOrderVo));
+    }
+
+    @PostMapping("/accept/cart")
+    public ResponseVo acceptCart(@RequestBody AcceptOrderVo acceptOrderVo) {
+        return ResponseVo.success(orderService.acceptCart(acceptOrderVo));
     }
 }

@@ -16,7 +16,7 @@ public interface CartItemDao extends GhCartItemMapper {
     /**
      * 根据账户标识查询购物项
      *
-     * @param accountId 账户
+     * @param accountId 账户标识
      * @return list
      */
     List<CartItemDto> listCartItemByAccountId(@Param("accountId") Integer accountId);
@@ -47,4 +47,12 @@ public interface CartItemDao extends GhCartItemMapper {
      * @return 1：成功，其他：失败
      */
     int decreaseCartItem(@Param("cartItemId") Integer cartItemId, @Param("goodsNum") Integer goodsNum);
+
+    /**
+     * 批量删除购物项
+     * @param accountId 账户标识
+     * @param goodsIdList 商品标识列表
+     * @return 0：失败，其他成功
+     */
+    int batchDeleteCartItem(@Param("accountId") Integer accountId, @Param("goodsIdList")List<Integer> goodsIdList);
 }
